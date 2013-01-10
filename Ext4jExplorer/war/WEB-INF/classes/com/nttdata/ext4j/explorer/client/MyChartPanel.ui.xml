@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:d="urn:import:com.google.gwt.user.datepicker.client"
+	xmlns:x="urn:import:com.nttdata.gwt4ext.client.ui" 
+	>
+	
+	<x:TabPanel  height="500px" width="800px" activeTab="1">
+		 <x:Panel title="Chart Panel" closable="true" layout="fit">
+	          <x:ToolBar>
+				  <x:ToolBarFill/>
+	              <x:Button text="Reload Data" ui:field="button" />
+	          </x:ToolBar>
+	          <x:Chart ui:field="chart"/>
+	      </x:Panel>
+	      <x:Panel title="DatePicker" closable="false" bodyPadding="10" layout="vbox" >
+	      		<x:DatePicker/>
+	      		<x:Button text="Ext Button"/>
+				<x:Slider increment="5" minValue="0" maxValue="100" width="200px"/>
+	      </x:Panel>
+	       <x:Panel title="GWT Widget" closable="false" layout="fit">
+				<g:VerticalPanel>
+				 	<g:Button text="GWT Button "/>
+				 	<d:DatePicker/>
+				</g:VerticalPanel>	      		
+	      </x:Panel>
+	</x:TabPanel>
+
+</ui:UiBinder> 
