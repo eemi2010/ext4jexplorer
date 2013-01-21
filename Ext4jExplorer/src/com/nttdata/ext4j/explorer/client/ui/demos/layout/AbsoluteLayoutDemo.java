@@ -1,9 +1,9 @@
 package com.nttdata.ext4j.explorer.client.ui.demos.layout;
 
+import com.nttdata.ext4j.client.core.config.Position;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
-import com.nttdata.gwt4ext.client.core.config.Position;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.ui.Panel;
 
 public class AbsoluteLayoutDemo extends DemoBase {
 

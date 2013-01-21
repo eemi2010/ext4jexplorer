@@ -2,6 +2,7 @@ package com.nttdata.ext4j.explorer.client.data;
 
 import java.util.ArrayList;
 
+import com.nttdata.ext4j.client.data.TableItem;
 import com.nttdata.ext4j.explorer.client.ui.demos.buttons.ButtonsDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.charts.CustomBarChartDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AbsoluteLayoutDemo;
@@ -9,7 +10,6 @@ import com.nttdata.ext4j.explorer.client.ui.demos.layout.AccordionLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AnchorLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.BorderLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.CardLayoutDemo;
-import com.nttdata.gwt4ext.client.data.TableItem;
 
 public class ExamplesData {
 

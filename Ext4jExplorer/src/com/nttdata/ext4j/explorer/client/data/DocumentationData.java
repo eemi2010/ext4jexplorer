@@ -2,7 +2,7 @@ package com.nttdata.ext4j.explorer.client.data;
 
 import java.util.ArrayList;
 
-import com.nttdata.gwt4ext.client.data.TableItem;
+import com.nttdata.ext4j.client.data.TableItem;
 
 public class DocumentationData {
 

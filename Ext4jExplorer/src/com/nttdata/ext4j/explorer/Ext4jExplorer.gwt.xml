@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='ext4jexplorer'>
-  <inherits name='com.nttdata.gwt4ext.Ext'/> 
+  <inherits name='com.nttdata.ext4j.Ext'/> 
    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
   
   <!-- Specify the app entry point class.                         -->

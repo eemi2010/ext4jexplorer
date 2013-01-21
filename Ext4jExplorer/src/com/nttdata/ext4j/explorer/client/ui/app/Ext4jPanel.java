@@ -1,9 +1,9 @@
 package com.nttdata.ext4j.explorer.client.ui.app;
 
-import com.nttdata.gwt4ext.client.layout.BorderRegion;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.ui.Panel;
-import com.nttdata.gwt4ext.client.ui.TabPanel;
+import com.nttdata.ext4j.client.layout.BorderRegion;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.TabPanel;
 
 public class Ext4jPanel extends TabPanel {
 

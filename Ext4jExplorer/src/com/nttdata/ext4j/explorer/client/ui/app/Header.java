@@ -18,9 +18,9 @@
  ******************************************************************************/
 package com.nttdata.ext4j.explorer.client.ui.app;
 
+import com.nttdata.ext4j.client.layout.BorderRegion;
+import com.nttdata.ext4j.client.ui.BoxComponent;
 import com.nttdata.ext4j.explorer.client.core.Constants;
-import com.nttdata.gwt4ext.client.layout.BorderRegion;
-import com.nttdata.gwt4ext.client.ui.BoxComponent;
 
 /**
  * Implements the header of the application.

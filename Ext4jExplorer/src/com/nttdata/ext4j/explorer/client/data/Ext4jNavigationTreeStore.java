@@ -2,11 +2,11 @@ package com.nttdata.ext4j.explorer.client.data;
 
 import java.util.ArrayList;
 
+import com.nttdata.ext4j.client.data.TableItem;
+import com.nttdata.ext4j.client.data.TreeStore;
 import com.nttdata.ext4j.explorer.client.ui.docentries.AboutDocEntry;
 import com.nttdata.ext4j.explorer.client.ui.docentries.GettingStartedDocEntry;
 import com.nttdata.ext4j.explorer.client.ui.docentries.RequirementsDocEntry;
-import com.nttdata.gwt4ext.client.data.TableItem;
-import com.nttdata.gwt4ext.client.data.TreeStore;
 
 public class Ext4jNavigationTreeStore extends TreeStore {
 

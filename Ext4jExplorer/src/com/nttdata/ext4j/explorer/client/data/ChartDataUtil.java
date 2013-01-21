@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
-import com.nttdata.gwt4ext.client.data.JsonStore;
+import com.nttdata.ext4j.client.data.JsonStore;
 
 public class ChartDataUtil {
 

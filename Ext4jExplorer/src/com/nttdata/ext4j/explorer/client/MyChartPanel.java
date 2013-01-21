@@ -5,11 +5,11 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
+import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
+import com.nttdata.ext4j.client.ui.Button;
+import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
-import com.nttdata.gwt4ext.client.core.EventObject;
-import com.nttdata.gwt4ext.client.events.handlers.button.InteractionHandler;
-import com.nttdata.gwt4ext.client.ui.Button;
-import com.nttdata.gwt4ext.client.ui.Chart;
 
 public class MyChartPanel implements IsWidget {
 

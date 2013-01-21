@@ -1,16 +1,16 @@
 package com.nttdata.ext4j.explorer.client;
 
 import com.google.gwt.user.client.ui.RootPanel;
-import com.nttdata.gwt4ext.client.core.EventObject;
-import com.nttdata.gwt4ext.client.core.ExtEntryPoint;
-import com.nttdata.gwt4ext.client.core.config.Dock;
-import com.nttdata.gwt4ext.client.core.config.Position;
-import com.nttdata.gwt4ext.client.events.handlers.button.InteractionHandler;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.ui.Button;
-import com.nttdata.gwt4ext.client.ui.Panel;
-import com.nttdata.gwt4ext.client.ui.ToolBar;
-import com.nttdata.gwt4ext.client.ui.ToolBarFill;
+import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.core.ExtEntryPoint;
+import com.nttdata.ext4j.client.core.config.Dock;
+import com.nttdata.ext4j.client.core.config.Position;
+import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Button;
+import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.ToolBar;
+import com.nttdata.ext4j.client.ui.ToolBarFill;
 
 public class Demo extends ExtEntryPoint {
 

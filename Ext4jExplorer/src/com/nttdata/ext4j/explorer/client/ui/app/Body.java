@@ -1,8 +1,8 @@
 package com.nttdata.ext4j.explorer.client.ui.app;
 
-import com.nttdata.gwt4ext.client.layout.BorderLayout;
-import com.nttdata.gwt4ext.client.layout.BorderRegion;
-import com.nttdata.gwt4ext.client.ui.Panel;
+import com.nttdata.ext4j.client.layout.BorderLayout;
+import com.nttdata.ext4j.client.layout.BorderRegion;
+import com.nttdata.ext4j.client.ui.Panel;
 
 /**
  * Implements the body of the application content.<br/>

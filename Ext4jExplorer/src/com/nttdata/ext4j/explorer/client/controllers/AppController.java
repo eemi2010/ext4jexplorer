@@ -3,6 +3,9 @@ package com.nttdata.ext4j.explorer.client.controllers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.tip.QuickTips;
+import com.nttdata.ext4j.client.ui.Viewport;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
 import com.nttdata.ext4j.explorer.client.controllers.demos.ButtonsDemoController;
@@ -17,9 +20,6 @@ import com.nttdata.ext4j.explorer.client.controllers.docentries.GettingStartedDo
 import com.nttdata.ext4j.explorer.client.controllers.docentries.RequirementsDocController;
 import com.nttdata.ext4j.explorer.client.ui.app.AppContainer;
 import com.nttdata.ext4j.explorer.client.ui.app.WelcomePanel;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.tip.QuickTips;
-import com.nttdata.gwt4ext.client.ui.Viewport;
 
 public class AppController implements ValueChangeHandler<String> {
 

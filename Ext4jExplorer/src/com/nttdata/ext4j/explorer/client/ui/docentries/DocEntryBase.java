@@ -1,6 +1,6 @@
 package com.nttdata.ext4j.explorer.client.ui.docentries;
 
-import com.nttdata.gwt4ext.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.Panel;
 
 /**
  * Base class for all pane containing doc entries.

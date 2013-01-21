@@ -1,13 +1,13 @@
 package com.nttdata.ext4j.explorer.client.ui.demos;
 
+import com.nttdata.ext4j.client.core.Component;
+import com.nttdata.ext4j.client.core.config.Position;
+import com.nttdata.ext4j.client.events.handlers.tab.TabChangeHandler;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.TabPanel;
 import com.nttdata.ext4j.explorer.client.core.Constants;
 import com.nttdata.ext4j.explorer.client.rpc.RequestUtil;
-import com.nttdata.gwt4ext.client.core.Component;
-import com.nttdata.gwt4ext.client.core.config.Position;
-import com.nttdata.gwt4ext.client.events.handlers.tab.TabChangeHandler;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.ui.Panel;
-import com.nttdata.gwt4ext.client.ui.TabPanel;
 
 public abstract class DemoBase extends Panel {
 

@@ -3,7 +3,7 @@ package com.nttdata.ext4j.explorer.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nttdata.gwt4ext.client.data.BaseModel;
+import com.nttdata.ext4j.client.data.BaseModel;
 
 public class Temperature extends BaseModel {
 

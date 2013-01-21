@@ -1,6 +1,6 @@
 package com.nttdata.ext4j.explorer.client.data;
 
-import com.nttdata.gwt4ext.client.data.TableItem;
+import com.nttdata.ext4j.client.data.TableItem;
 
 public class NavigationItem extends TableItem {
 

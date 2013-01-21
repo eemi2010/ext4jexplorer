@@ -1,7 +1,7 @@
 package com.nttdata.ext4j.explorer.client.ui.app;
 
+import com.nttdata.ext4j.client.data.TreeStore;
 import com.nttdata.ext4j.explorer.client.data.Ext4jNavigationTreeStore;
-import com.nttdata.gwt4ext.client.data.TreeStore;
 
 public class Ext4jNavigation extends NavigationBase {
 

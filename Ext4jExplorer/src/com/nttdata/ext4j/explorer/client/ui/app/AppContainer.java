@@ -1,7 +1,7 @@
 package com.nttdata.ext4j.explorer.client.ui.app;
 
-import com.nttdata.gwt4ext.client.layout.BorderLayout;
-import com.nttdata.gwt4ext.client.ui.Panel;
+import com.nttdata.ext4j.client.layout.BorderLayout;
+import com.nttdata.ext4j.client.ui.Panel;
 
 /**
  * Application main container.<br/>

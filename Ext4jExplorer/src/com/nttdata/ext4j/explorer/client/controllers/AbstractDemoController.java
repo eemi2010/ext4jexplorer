@@ -1,13 +1,13 @@
 package com.nttdata.ext4j.explorer.client.controllers;
 
+import com.nttdata.ext4j.client.events.handlers.panel.CloseHandler;
+import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEventHandler;
 import com.nttdata.ext4j.explorer.client.core.Constants;
 import com.nttdata.ext4j.explorer.client.ui.app.Ext4jPanel;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
-import com.nttdata.gwt4ext.client.events.handlers.panel.CloseHandler;
-import com.nttdata.gwt4ext.client.ui.Panel;
 
 public abstract class AbstractDemoController implements DocEntryLoadEventHandler {
 

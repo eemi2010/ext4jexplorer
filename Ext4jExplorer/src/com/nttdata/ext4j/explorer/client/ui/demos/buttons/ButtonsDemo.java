@@ -1,16 +1,16 @@
 package com.nttdata.ext4j.explorer.client.ui.demos.buttons;
 
 import com.google.gwt.user.client.Window;
+import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
+import com.nttdata.ext4j.client.events.handlers.menu.item.ItemClickHandler;
+import com.nttdata.ext4j.client.laf.Alignment;
+import com.nttdata.ext4j.client.laf.ButtonScale;
+import com.nttdata.ext4j.client.ui.Button;
+import com.nttdata.ext4j.client.ui.Menu;
+import com.nttdata.ext4j.client.ui.MenuItem;
+import com.nttdata.ext4j.client.ui.SplitButton;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
-import com.nttdata.gwt4ext.client.core.EventObject;
-import com.nttdata.gwt4ext.client.events.handlers.button.InteractionHandler;
-import com.nttdata.gwt4ext.client.events.handlers.menu.item.ItemClickHandler;
-import com.nttdata.gwt4ext.client.laf.Alignment;
-import com.nttdata.gwt4ext.client.laf.ButtonScale;
-import com.nttdata.gwt4ext.client.ui.Button;
-import com.nttdata.gwt4ext.client.ui.Menu;
-import com.nttdata.gwt4ext.client.ui.MenuItem;
-import com.nttdata.gwt4ext.client.ui.SplitButton;
 
 public class ButtonsDemo extends DemoBase {
 

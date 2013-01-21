@@ -7,7 +7,7 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Window;
-import com.nttdata.gwt4ext.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.Panel;
 
 /**
  * Utility class for RPC calls

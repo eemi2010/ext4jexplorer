@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.nttdata.ext4j.client.chart.axis.CategoryAxis;
+import com.nttdata.ext4j.client.chart.axis.NumericAxis;
+import com.nttdata.ext4j.client.chart.laf.BarAttribute;
+import com.nttdata.ext4j.client.chart.laf.Label;
+import com.nttdata.ext4j.client.chart.series.BarSerie;
+import com.nttdata.ext4j.client.chart.series.renderers.SeriesRenderer;
+import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.core.config.Position;
+import com.nttdata.ext4j.client.data.JsonStore;
+import com.nttdata.ext4j.client.data.Record;
+import com.nttdata.ext4j.client.data.Store;
+import com.nttdata.ext4j.client.draw.Sprite;
+import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
+import com.nttdata.ext4j.client.laf.Color;
+import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Button;
+import com.nttdata.ext4j.client.ui.Chart;
+import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.ToolBar;
+import com.nttdata.ext4j.client.util.Format;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
-import com.nttdata.gwt4ext.client.chart.axis.CategoryAxis;
-import com.nttdata.gwt4ext.client.chart.axis.NumericAxis;
-import com.nttdata.gwt4ext.client.chart.laf.BarAttribute;
-import com.nttdata.gwt4ext.client.chart.laf.Label;
-import com.nttdata.gwt4ext.client.chart.series.BarSerie;
-import com.nttdata.gwt4ext.client.chart.series.renderers.SeriesRenderer;
-import com.nttdata.gwt4ext.client.core.EventObject;
-import com.nttdata.gwt4ext.client.core.config.Position;
-import com.nttdata.gwt4ext.client.data.JsonStore;
-import com.nttdata.gwt4ext.client.data.Record;
-import com.nttdata.gwt4ext.client.data.Store;
-import com.nttdata.gwt4ext.client.draw.Sprite;
-import com.nttdata.gwt4ext.client.events.handlers.button.InteractionHandler;
-import com.nttdata.gwt4ext.client.laf.Color;
-import com.nttdata.gwt4ext.client.layout.Layout;
-import com.nttdata.gwt4ext.client.ui.Button;
-import com.nttdata.gwt4ext.client.ui.Chart;
-import com.nttdata.gwt4ext.client.ui.Panel;
-import com.nttdata.gwt4ext.client.ui.ToolBar;
-import com.nttdata.gwt4ext.client.util.Format;
 
 public class CustomBarChartDemo extends DemoBase {
 

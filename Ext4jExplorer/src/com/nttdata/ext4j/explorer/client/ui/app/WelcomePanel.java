@@ -1,7 +1,7 @@
 package com.nttdata.ext4j.explorer.client.ui.app;
 
+import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.explorer.client.rpc.RequestUtil;
-import com.nttdata.gwt4ext.client.ui.Panel;
 
 /**
  * Implements the welcome panel of the doc app
