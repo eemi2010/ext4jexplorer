@@ -7,6 +7,7 @@ import com.nttdata.ext4j.client.data.TreeStore;
 import com.nttdata.ext4j.explorer.client.ui.docentries.AboutDocEntry;
 import com.nttdata.ext4j.explorer.client.ui.docentries.GettingStartedDocEntry;
 import com.nttdata.ext4j.explorer.client.ui.docentries.RequirementsDocEntry;
+import com.nttdata.ext4j.explorer.client.ui.docentries.SenchaDocsDocEntry;
 
 public class Ext4jNavigationTreeStore extends TreeStore {
 
@@ -26,8 +27,8 @@ public class Ext4jNavigationTreeStore extends TreeStore {
         data.add(new DocNavigationItem(RequirementsDocEntry.TITLE));
         data.add(new DocNavigationItem(GettingStartedDocEntry.TITLE));
         data.add(new DocNavigationItem("Java Docs"));
-        data.add(new DocNavigationItem("Official Sencha Documentation"));
-        data.add(DocumentationData.getData());
+        data.add(new DocNavigationItem(SenchaDocsDocEntry.TITLE));
+        // data.add(DocumentationData.getData());
         data.add(ExamplesData.getData());
         return data;
     }

@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.nttdata.ext4j.client.data.TableItem;
 import com.nttdata.ext4j.explorer.client.ui.demos.buttons.ButtonsDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.charts.CustomBarChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.combination.PortalDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.components.MessageBoxDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AbsoluteLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AccordionLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AnchorLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.BorderLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.CardLayoutDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.layout.ColumnLayoutDemo;
 
 public class ExamplesData {
 
@@ -25,6 +28,7 @@ public class ExamplesData {
         items.add(getChartsData());
         items.add(getComponentsData());
         items.add(getLayoutsData());
+        items.add(getCombinationExampleData());
         root.setChildren(items);
 
         return root;
@@ -59,6 +63,7 @@ public class ExamplesData {
 
         ArrayList<TableItem> items = new ArrayList<TableItem>();
         items.add(new NavigationItem(ButtonsDemo.TITLE));
+        items.add(new NavigationItem(MessageBoxDemo.TITLE));
         items.add(new NavigationItem("DatePicker"));
         items.add(new NavigationItem("Slider"));
 
@@ -78,11 +83,24 @@ public class ExamplesData {
         items.add(new NavigationItem(BorderLayoutDemo.TITLE));
         // items.add(new NavigationItem("Card (TabPanel"));
         items.add(new NavigationItem(CardLayoutDemo.TITLE));
-        items.add(new NavigationItem("Column"));
+        items.add(new NavigationItem(ColumnLayoutDemo.TITLE));
         items.add(new NavigationItem("Fit"));
         items.add(new NavigationItem("Table"));
         items.add(new NavigationItem("vBox"));
         items.add(new NavigationItem("hBox"));
+
+        root.setChildren(items);
+
+        return root;
+    }
+
+    private static TableItem getCombinationExampleData() {
+        NavigationItem root = new NavigationItem("Combination Examples");
+        root.setIcon("imgs/bullet_shape.png");
+
+        ArrayList<TableItem> items = new ArrayList<TableItem>();
+        items.add(new NavigationItem(PortalDemo.TITLE));
+        items.add(new NavigationItem("Google Maps"));
 
         root.setChildren(items);
 

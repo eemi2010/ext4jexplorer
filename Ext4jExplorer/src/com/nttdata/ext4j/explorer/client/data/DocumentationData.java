@@ -28,9 +28,9 @@ public class DocumentationData {
 
         ArrayList<TableItem> items = new ArrayList<TableItem>();
         items.add(new DocNavigationItem("The Viewport Container"));
-        items.add(new DocNavigationItem("The Panel"));
+        items.add(new DocNavigationItem("The NotificationContainer"));
         items.add(new DocNavigationItem("Windows"));
-        items.add(new DocNavigationItem("Tab Panel"));
+        items.add(new DocNavigationItem("Tab NotificationContainer"));
         root.setChildren(items);
 
         root.setIcon("imgs/bullet_shape.png");

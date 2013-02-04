@@ -17,6 +17,7 @@ public abstract class AbstractDemoController implements DocEntryLoadEventHandler
     public AbstractDemoController() {
         EventBusUtil.get().addHandler(DocEntryLoadEvent.TYPE, this);
         demo = getDemoBase();
+        AppController.registerEntry(demo.getDemoTitle());
     }
 
     @Override
@@ -40,7 +41,6 @@ public abstract class AbstractDemoController implements DocEntryLoadEventHandler
                 }
             }
         }
-
     }
 
     public abstract DemoBase getDemoBase();

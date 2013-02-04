@@ -1,4 +1,4 @@
-package com.nttdata.ext4j.explorer.client.controllers.demos;
+package com.nttdata.ext4j.explorer.client.controllers.demos.component;
 
 import com.nttdata.ext4j.explorer.client.controllers.AbstractDemoController;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;

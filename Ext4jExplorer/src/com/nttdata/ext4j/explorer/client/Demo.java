@@ -1,82 +1,55 @@
 package com.nttdata.ext4j.explorer.client;
 
-import com.google.gwt.user.client.ui.RootPanel;
-import com.nttdata.ext4j.client.core.EventObject;
 import com.nttdata.ext4j.client.core.ExtEntryPoint;
-import com.nttdata.ext4j.client.core.config.Dock;
-import com.nttdata.ext4j.client.core.config.Position;
-import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
+import com.nttdata.ext4j.client.layout.ColumnLayoutData;
 import com.nttdata.ext4j.client.layout.Layout;
-import com.nttdata.ext4j.client.ui.Button;
-import com.nttdata.ext4j.client.ui.Panel;
-import com.nttdata.ext4j.client.ui.ToolBar;
-import com.nttdata.ext4j.client.ui.ToolBarFill;
+import com.nttdata.ext4j.client.ui.Tool;
+import com.nttdata.ext4j.client.ui.Viewport;
+import com.nttdata.ext4j.explorer.client.core.Constants;
+import com.nttdata.ext4j.ux.portal.client.Portal;
+import com.nttdata.ext4j.ux.portal.client.PortalColumn;
+import com.nttdata.ext4j.ux.portal.client.Portlet;
 
 public class Demo extends ExtEntryPoint {
-
-    private Panel container;
-    private Button prevButton;
-    private Button nextButton;
-    private int index = 0;
 
     @Override
     public void onLoad() {
 
-        container = new Panel("Card Layout");
-        container.setLayout(Layout.CARD);
-        container.setSize(1000, 600);
-        container.setCollapsible(true);
-        container.setXY(30, 50);
-        container.setTitleAlign(Position.CENTER);
+        // create a portal
+        Portal portal = new Portal();
 
-        Panel card1 = new Panel();
-        card1.setBodyPadding(10);
-        card1.setHtml("<b>Welcome to the Demo Wizard</b><br/> Step 1of 3<br/>Please click the 'next' button to continue...");
-        container.add(card1);
+        // create portal columns
+        PortalColumn firstCol = new PortalColumn();
+        firstCol.setPaddings(10, 10, 0, 10);
 
-        Panel card2 = new Panel();
-        card2.setHtml("Step 2 of 3<br/>Almost there please click the 'next' button to continue ...");
-        card2.setBodyPadding(10);
-        container.add(card2);
+        // add portlets to portal columns
+        Portlet portlet = new Portlet();
+        portlet.setTitle("Portlet 1");
+        portlet.setHtml(Constants.getShortBogusMarkup());
+        portlet.setTools(new Tool(Tool.GEAR));
+        firstCol.add(portlet);
 
-        Panel card3 = new Panel();
-        card3.setBodyPadding(10);
-        card3.setHtml("<b>Congratulations!</b><br/>Step 3 of 3 - Complete");
-        container.add(card3);
+        portlet = new Portlet("Another Panel 1", Constants.getShortBogusMarkup());
+        firstCol.add(portlet);
 
-        prevButton = new Button("&laquo; Previous");
-        prevButton.addClickHandler(new InteractionHandler() {
+        // add portal column to portal
+        portal.add(firstCol, new ColumnLayoutData(.33));
 
-            @Override
-            public void onEvent(Button button, EventObject event) {
-                index--;
-                container.setActiveItem(index);
-                nextButton.setDisabled(false);
-                if (index <= 0) {
-                    button.setDisabled(true);
-                }
-            }
-        });
-        prevButton.setDisabled(true);
+        // another column
+        PortalColumn secondCol = new PortalColumn();
+        secondCol.setPaddings(10, 10, 0, 10);
+        secondCol.add(new Portlet("Panel 2", Constants.getShortBogusMarkup()));
+        secondCol.add(new Portlet("Another Panel 2", Constants.getShortBogusMarkup()));
+        portal.add(secondCol, new ColumnLayoutData(.33));
 
-        nextButton = new Button("Next &raquo;");
-        nextButton.addClickHandler(new InteractionHandler() {
-            @Override
-            public void onEvent(Button button, EventObject event) {
-                index++;
-                container.setActiveItem(index);
-                prevButton.setDisabled(false);
-                if (index >= 2) {
-                    button.setDisabled(true);
-                }
-            }
-        });
+        // third column
+        PortalColumn thirdCol = new PortalColumn();
+        thirdCol.setPaddings(10, 10, 0, 10);
+        thirdCol.add(new Portlet("Panel 3", Constants.getShortBogusMarkup()));
+        thirdCol.add(new Portlet("Another Panel 3", Constants.getShortBogusMarkup()));
+        portal.add(thirdCol, new ColumnLayoutData(.33));
 
-        ToolBar footer = new ToolBar(Dock.BOTTOM);
-        footer.add(new ToolBarFill(), prevButton, nextButton);
-        container.addDocked(footer);
-
-        RootPanel.get().add(container);
+        Viewport.get(Layout.FIT).add(portal);
     }
 
 }

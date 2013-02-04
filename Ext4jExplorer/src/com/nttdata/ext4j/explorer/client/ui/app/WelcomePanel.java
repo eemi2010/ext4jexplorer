@@ -14,6 +14,7 @@ public class WelcomePanel extends Panel {
     private static final WelcomePanel INSTANCE = new WelcomePanel();
 
     public static WelcomePanel get() {
+
         return INSTANCE;
     }
 

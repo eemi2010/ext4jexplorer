@@ -16,19 +16,19 @@ public class AnchorLayoutDemo extends DemoBase {
         container.setCollapsible(true);
         container.setXY(30, 50);
 
-        Panel panel1 = new Panel("Panel 1");
+        Panel panel1 = new Panel("NotificationContainer 1");
         panel1.setBodyPadding(10);
         panel1.setHtml("Width = 50% of the container");
         panel1.setAnchor("50%");
         container.add(panel1);
 
-        Panel panel2 = new Panel("Panel 2");
+        Panel panel2 = new Panel("NotificationContainer 2");
         panel2.setBodyPadding(10);
         panel2.setHtml("Width = container width - 100px");
         panel2.setAnchor("-100");
         container.add(panel2);
 
-        Panel panel3 = new Panel("Panel 3");
+        Panel panel3 = new Panel("NotificationContainer 3");
         panel3.setBodyPadding(10);
         panel3.setHtml("Width = container width - 10px<br/> Height = container height - 262px");
         panel3.setAnchor("-10, -262");

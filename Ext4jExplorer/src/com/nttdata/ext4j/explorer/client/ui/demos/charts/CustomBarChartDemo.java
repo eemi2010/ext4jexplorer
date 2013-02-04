@@ -12,8 +12,8 @@ import com.nttdata.ext4j.client.chart.series.BarSerie;
 import com.nttdata.ext4j.client.chart.series.renderers.SeriesRenderer;
 import com.nttdata.ext4j.client.core.EventObject;
 import com.nttdata.ext4j.client.core.config.Position;
+import com.nttdata.ext4j.client.data.BaseModel;
 import com.nttdata.ext4j.client.data.JsonStore;
-import com.nttdata.ext4j.client.data.Record;
 import com.nttdata.ext4j.client.data.Store;
 import com.nttdata.ext4j.client.draw.Sprite;
 import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
@@ -101,9 +101,9 @@ public class CustomBarChartDemo extends DemoBase {
         serie.setYField("data1");
         serie.setRenderer(new SeriesRenderer() {
             @Override
-            public JavaScriptObject onRender(Sprite sprite, Record record, BarAttribute attributes, int index,
+            public JavaScriptObject onRender(Sprite sprite, BaseModel record, BarAttribute attributes, int index,
                             Store store) {
-                int value = (int) record.getNumber("data1");
+                int value = record.getAsInteger("data1");
                 int i = (value >> 0) % 5;
                 String color = colors.get(i);
                 attributes.setFill(color);

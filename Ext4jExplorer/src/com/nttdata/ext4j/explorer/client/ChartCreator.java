@@ -24,7 +24,7 @@ import com.nttdata.ext4j.client.chart.series.renderers.SeriesRenderer;
 import com.nttdata.ext4j.client.chart.theme.Theme;
 import com.nttdata.ext4j.client.core.config.Position;
 import com.nttdata.ext4j.client.core.config.SpriteConfig;
-import com.nttdata.ext4j.client.data.Record;
+import com.nttdata.ext4j.client.data.BaseModel;
 import com.nttdata.ext4j.client.data.Store;
 import com.nttdata.ext4j.client.data.handlers.EachCallBack;
 import com.nttdata.ext4j.client.draw.Sprite;
@@ -127,8 +127,8 @@ public class ChartCreator {
         chartTip.setHeight(200);
         chartTip.setRenderer(new ChartTooltipRenderer() {
             @Override
-            public void onRender(ToolTip tip, Record record, JavaScriptObject item) {
-                String title = record.getString("name") + ": " + (int) record.getNumber("data1") + " views";
+            public void onRender(ToolTip tip, BaseModel record, JavaScriptObject item) {
+                String title = record.getAsString("name") + ": " + record.getAsInteger("data1") + " views";
                 tip.setTitle(title);
             }
         });
@@ -189,9 +189,9 @@ public class ChartCreator {
         serie.setYField("data1");
         serie.setRenderer(new SeriesRenderer() {
             @Override
-            public JavaScriptObject onRender(Sprite sprite, Record record, BarAttribute attributes, int index,
+            public JavaScriptObject onRender(Sprite sprite, BaseModel record, BarAttribute attributes, int index,
                             Store store) {
-                int value = (int) record.getNumber("data1");
+                int value = (int) record.getAsInteger("data1");
                 int i = (value >> 0) % 5;
                 String color = colors.get(i);
                 attributes.setFill(color);
@@ -236,15 +236,15 @@ public class ChartCreator {
             private int total;
 
             @Override
-            public void onRender(ToolTip tip, Record record, JavaScriptObject item) {
+            public void onRender(ToolTip tip, BaseModel record, JavaScriptObject item) {
                 total = 0;
                 barStore.each(new EachCallBack() {
                     @Override
-                    public void onEachRecord(Record record) {
-                        total += (int) record.getNumber("data1");
+                    public void onEach(BaseModel record) {
+                        total += (int) record.getAsInteger("data1");
                     }
                 });
-                tip.setTitle(record.getString("name") + " : " + Math.round(record.getNumber("data1") / total * 100)
+                tip.setTitle(record.getAsString("name") + " : " + Math.round(record.getAsNumber("data1") / total * 100)
                                 + " %");
             }
         });

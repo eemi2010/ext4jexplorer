@@ -8,6 +8,7 @@ import com.nttdata.ext4j.client.ui.Panel;
  * @author alainekambi
  * 
  */
+@SuppressWarnings("unchecked")
 public abstract class DocEntryBase extends Panel {
 
     public DocEntryBase() {

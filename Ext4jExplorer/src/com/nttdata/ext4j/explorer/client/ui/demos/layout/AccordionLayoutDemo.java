@@ -19,16 +19,16 @@ public class AccordionLayoutDemo extends DemoBase {
         container.setXY(30, 50);
         container.setTitleAlign(Position.CENTER);
 
-        Panel panel1 = new Panel("Panel 1");
+        Panel panel1 = new Panel("NotificationContainer 1");
         panel1.setHtml("Accordion Content 1");
         container.add(panel1);
 
-        Panel panel2 = new Panel("Panel 2");
+        Panel panel2 = new Panel("NotificationContainer 2");
         panel2.setBodyPadding(20);
         panel2.add(new DatePicker());
         container.add(panel2);
 
-        Panel panel3 = new Panel("Panel 3");
+        Panel panel3 = new Panel("NotificationContainer 3");
         panel3.setBodyPadding(20);
         panel3.setHtml("Accordion Content 3");
         container.add(panel3);

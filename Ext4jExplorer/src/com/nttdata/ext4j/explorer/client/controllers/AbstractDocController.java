@@ -12,7 +12,7 @@ import com.nttdata.ext4j.explorer.client.ui.docentries.DocEntryBase;
 
 public abstract class AbstractDocController implements DocEntryLoadEventHandler {
 
-    private boolean isAdded;
+    protected boolean isAdded;
     protected DocEntryBase docEntry;
 
     public AbstractDocController() {

@@ -18,14 +18,14 @@ public class AbsoluteLayoutDemo extends DemoBase {
         container.setXY(30, 50);
         container.setTitleAlign(Position.CENTER);
 
-        Panel panel1 = new Panel("Panel 1");
+        Panel panel1 = new Panel("NotificationContainer 1");
         panel1.setSize(200, 200);
         panel1.setHtml("Positioned at x:50, y:50");
         panel1.setFrame(true);
         panel1.setXY(50, 50);
         container.add(panel1);
 
-        Panel panel2 = new Panel("Panel 2");
+        Panel panel2 = new Panel("NotificationContainer 2");
         panel2.setSize(200, 200);
         panel2.setFrame(true);
         panel2.setXY(125, 125);

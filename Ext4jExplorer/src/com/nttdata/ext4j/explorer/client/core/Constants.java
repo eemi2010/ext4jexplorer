@@ -13,8 +13,14 @@ public class Constants {
     public static final String EXT4J_KS = "http://ext4j.appspot.com/";
     public static final String EXT4J = "Ext4j";
     public static final String DOC_ENTRY = "Doc Entry";
+    public static final String EXT4J_CURRENT_VERSION = "4-1";
+    public static final String EXT4J_DOCS_LINK = "http://docs.sencha.com/ext-js/" + EXT4J_CURRENT_VERSION + "/";
 
     private Constants() {
 
+    }
+
+    public static String getShortBogusMarkup() {
+        return "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed metus nibh, sodales a, porta at, vulputate eget, dui.  In pellentesque nisl non sem. Suspendisse nunc sem, pretium eget, cursus a, fringilla vel, urna.";
     }
 }
