@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import com.nttdata.ext4j.client.data.TableItem;
 import com.nttdata.ext4j.explorer.client.ui.demos.buttons.ButtonsDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.AreaChartDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.charts.CustomBarChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.combination.GoogleMapDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.combination.PortalDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.components.MessageBoxDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.AbsoluteLayoutDemo;
@@ -39,7 +41,7 @@ public class ExamplesData {
         root.setIcon("imgs/bullet_shape.png");
 
         ArrayList<TableItem> items = new ArrayList<TableItem>();
-        items.add(new NavigationItem("Area Charts"));
+        items.add(new NavigationItem(AreaChartDemo.TITLE));
         items.add(new NavigationItem("Bar Charts"));
         items.add(new NavigationItem(CustomBarChartDemo.TITLE));
         items.add(new NavigationItem("Column Charts"));
@@ -100,7 +102,7 @@ public class ExamplesData {
 
         ArrayList<TableItem> items = new ArrayList<TableItem>();
         items.add(new NavigationItem(PortalDemo.TITLE));
-        items.add(new NavigationItem("Google Maps"));
+        items.add(new NavigationItem(GoogleMapDemo.TITLE));
 
         root.setChildren(items);
 

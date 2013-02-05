@@ -3,39 +3,35 @@ package com.nttdata.ext4j.explorer.client.ui.demos.charts;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.core.client.JavaScriptObject;
+import com.nttdata.ext4j.client.chart.Legend;
 import com.nttdata.ext4j.client.chart.axis.CategoryAxis;
 import com.nttdata.ext4j.client.chart.axis.NumericAxis;
-import com.nttdata.ext4j.client.chart.laf.BarAttribute;
+import com.nttdata.ext4j.client.chart.laf.GridConfig;
 import com.nttdata.ext4j.client.chart.laf.Label;
-import com.nttdata.ext4j.client.chart.series.BarSerie;
-import com.nttdata.ext4j.client.chart.series.renderers.SeriesRenderer;
+import com.nttdata.ext4j.client.chart.laf.Style;
+import com.nttdata.ext4j.client.chart.series.AreaSerie;
 import com.nttdata.ext4j.client.core.EventObject;
 import com.nttdata.ext4j.client.core.config.Position;
-import com.nttdata.ext4j.client.data.BaseModel;
+import com.nttdata.ext4j.client.core.config.SpriteConfig;
 import com.nttdata.ext4j.client.data.JsonStore;
-import com.nttdata.ext4j.client.data.Store;
-import com.nttdata.ext4j.client.draw.Sprite;
 import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
-import com.nttdata.ext4j.client.laf.Color;
 import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
-import com.nttdata.ext4j.client.util.Format;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
-public class CustomBarChartDemo extends DemoBase {
+public class AreaChartDemo extends DemoBase {
 
-    public static final String TITLE = "Custom Bar Charts";
+    public static final String TITLE = "Area Chart";
     private JsonStore store;
 
-    public CustomBarChartDemo() {
+    public AreaChartDemo() {
         store = ChartDataUtil.getStore(12, 20);
         Chart chart = createChart();
 
-        Panel panel = new Panel("Bar Chart");
+        Panel panel = new Panel("Area Chart");
         panel.setLayout(Layout.FIT);
         panel.setFrame(true);
         panel.setCollapsible(true);
@@ -71,54 +67,49 @@ public class CustomBarChartDemo extends DemoBase {
         chart.setShadow(true);
         chart.setAnimate(true);
 
-        NumericAxis nAxis = new NumericAxis();
-        nAxis.setPosition(Position.BOTTOM);
-        nAxis.setTitle("Number of Hits");
-        nAxis.setFields("data1");
-        nAxis.setMinimum(0);
+        Legend legend = new Legend(Position.BOTTOM);
+        chart.setLegend(legend);
 
-        Label l = new Label();
-        l.setRenderer(Format.getNumberRender("0,0"));
-        nAxis.setLabel(l);
-        nAxis.setGrid(true);
-        chart.addAxis(nAxis);
+        NumericAxis numericAxis = new NumericAxis();
+        numericAxis.setPosition(Position.LEFT);
+        numericAxis.setTitle("Number of Hits");
+        numericAxis.setFields("data1", "data2", "data3", "data4", "data5", "data6", "data7");
+
+        SpriteConfig odd = new SpriteConfig();
+        odd.setOpacity(1);
+        odd.setFill("#ddd");
+        odd.setStroke("#bbb");
+        odd.setStrokeWidth(1);
+
+        numericAxis.setGrid(new GridConfig(odd));
+        numericAxis.setMinimum(0);
+        numericAxis.setAdjustMaximumByMajorUnit(false);
+        chart.addAxis(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
-        categoryAxis.setPosition(Position.LEFT);
+        categoryAxis.setPosition(Position.BOTTOM);
         categoryAxis.setFields("name");
         categoryAxis.setTitle("Month of the year");
+        categoryAxis.setGrid(true);
+
+        Label label = new Label();
+        label.setRotate(315);
+        categoryAxis.setLabel(label);
         chart.addAxis(categoryAxis);
 
         chart.drawAxis();
 
-        BarSerie serie = new BarSerie();
-        serie.setAxis(Position.BOTTOM);
+        AreaSerie serie = new AreaSerie();
+        serie.setHighLight(false);
         serie.setXField("name");
-        serie.setYField("data1");
-        serie.setRenderer(new SeriesRenderer() {
-            @Override
-            public JavaScriptObject onRender(Sprite sprite, BaseModel record, BarAttribute attributes, int index,
-                            Store store) {
-                int value = record.getAsInteger("data1");
-                int i = (value >> 0) % 5;
-                String color = colors.get(i);
-                attributes.setFill(color);
-                return attributes;
-            }
-        });
+        serie.setYField("data1", "data2", "data3", "data4", "data5", "data6", "data7");
 
-        l = new Label();
-        l.setDisplay("insideEnd");
-        l.setField("data1");
-        l.setOrientation("horizontal");
-        l.setColor("#333");
-        l.setTextAnchor("middle");
-        l.setRenderer(Format.getNumberRender("0"));
-        serie.setLabel(l);
+        Style style = new Style();
+        style.setOpacity(0.93);
+        serie.setStyle(style);
 
         chart.addSeries(serie);
         chart.drawSeries();
-        chart.setBackGroundFill(Color.BISQUE);
 
         return chart;
     }

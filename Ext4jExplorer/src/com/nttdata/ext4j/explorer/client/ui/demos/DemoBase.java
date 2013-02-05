@@ -25,6 +25,7 @@ public abstract class DemoBase extends Panel {
         demoContainer.setTabPosition(Position.BOTTOM);
 
         demoPanel = new Panel("Demo");
+        demoPanel.setBodyPadding(20);
         demoContainer.add(demoPanel);
 
         sourcePanel = new Panel("Source");

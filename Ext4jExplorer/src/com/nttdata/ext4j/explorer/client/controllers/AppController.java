@@ -12,7 +12,9 @@ import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.ui.Viewport;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
-import com.nttdata.ext4j.explorer.client.controllers.demos.charts.CustomBarChartController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.AreaChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.CustomBarChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.MapDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.PortalDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.component.ButtonsDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.component.MessageBoxDemoController;
@@ -73,9 +75,11 @@ public class AppController implements ValueChangeHandler<String> {
 
         // Components
         ButtonsDemoController.get();
-        CustomBarChartController.get();
+        CustomBarChartDemoController.get();
         MessageBoxDemoController.get();
         PortalDemoController.get();
+        MapDemoController.get();
+        AreaChartDemoController.get();
 
     }
 
