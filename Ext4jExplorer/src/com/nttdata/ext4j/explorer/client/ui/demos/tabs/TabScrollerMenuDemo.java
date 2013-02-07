@@ -1,22 +1,25 @@
-package com.nttdata.ext4j.explorer.client;
+package com.nttdata.ext4j.explorer.client.ui.demos.tabs;
 
 import com.google.gwt.user.client.Timer;
-import com.nttdata.ext4j.client.core.ExtEntryPoint;
 import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.ui.TabPanel;
-import com.nttdata.ext4j.client.ui.Viewport;
+import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 import com.nttdata.ext4j.ux.tabclosemenu.client.TabCloseMenu;
 import com.nttdata.ext4j.ux.tabscrollermenu.client.TabScrollerMenu;
 
-public class Demo extends ExtEntryPoint {
+public class TabScrollerMenuDemo extends DemoBase {
 
+    public static final String TITLE = "Tab Scroller Menu";
     private int index = 1;
     Panel firstPanel;
     private TabPanel tabPanel;
 
-    @Override
-    public void onLoad() {
+    public static TabScrollerMenuDemo get() {
+        return new TabScrollerMenuDemo();
+    }
+
+    private TabScrollerMenuDemo() {
 
         Panel panel = new Panel("Exercising scrollable tabs with a TabScroller menu");
         panel.setBodyPadding(30);
@@ -35,7 +38,9 @@ public class Demo extends ExtEntryPoint {
 
         panel.add(tabPanel);
 
-        Viewport.get(Layout.FIT).add(panel);
+        demoPanel.setBodyPadding(20);
+        demoPanel.setLayout(Layout.FIT);
+        demoPanel.add(panel);
 
         new Timer() {
             Panel p;
@@ -53,6 +58,11 @@ public class Demo extends ExtEntryPoint {
             }
         }.schedule(1000);
 
+    }
+
+    @Override
+    public String getDemoTitle() {
+        return TITLE;
     }
 
 }

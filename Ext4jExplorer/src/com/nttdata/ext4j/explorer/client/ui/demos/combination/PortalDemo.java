@@ -2,9 +2,11 @@ package com.nttdata.ext4j.explorer.client.ui.demos.combination;
 
 import com.nttdata.ext4j.client.layout.ColumnLayoutData;
 import com.nttdata.ext4j.client.layout.Layout;
+import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.ui.Tool;
 import com.nttdata.ext4j.explorer.client.core.Constants;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.ChartCreator;
 import com.nttdata.ext4j.ux.portal.client.Portal;
 import com.nttdata.ext4j.ux.portal.client.PortalColumn;
 import com.nttdata.ext4j.ux.portal.client.Portlet;
@@ -30,8 +32,14 @@ public class PortalDemo extends DemoBase {
 
         // add portlets to portal columns
         Portlet portlet = new Portlet();
-        portlet.setTitle("Portlet 1");
-        portlet.setHtml(Constants.getShortBogusMarkup());
+        portlet.setTitle("Pie Chart");
+        portlet.setLayout(Layout.FIT);
+
+        Panel container = new Panel(Layout.FIT);
+        container.add(ChartCreator.createBarChart());
+
+        portlet.add(container);
+        portlet.setHeight(300);
         portlet.setTools(new Tool(Tool.GEAR));
         firstCol.add(portlet);
 

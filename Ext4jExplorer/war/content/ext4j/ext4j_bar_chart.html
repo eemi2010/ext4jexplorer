@@ -1,41 +1,43 @@
-package com.nttdata.ext4j.explorer.client.ui.demos.charts;
-
-import java.util.ArrayList;
-import java.util.List;
+<textarea name="code" class="java:nocontrols" rows="15" cols="100">	
+/**
+ * Ext4j - Ext JS for Java
+ * https://github.com/eemi2010/ext4j
+ */
+package com.nttdata.ext4j.explorer.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.nttdata.ext4j.client.chart.ChartTooltipRenderer;
 import com.nttdata.ext4j.client.chart.axis.CategoryAxis;
 import com.nttdata.ext4j.client.chart.axis.NumericAxis;
-import com.nttdata.ext4j.client.chart.laf.BarAttribute;
+import com.nttdata.ext4j.client.chart.laf.ChartTooltip;
 import com.nttdata.ext4j.client.chart.laf.Label;
 import com.nttdata.ext4j.client.chart.series.BarSerie;
-import com.nttdata.ext4j.client.chart.series.renderers.SeriesRenderer;
 import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.core.ExtEntryPoint;
 import com.nttdata.ext4j.client.core.config.Position;
 import com.nttdata.ext4j.client.data.BaseModel;
 import com.nttdata.ext4j.client.data.JsonStore;
-import com.nttdata.ext4j.client.data.Store;
-import com.nttdata.ext4j.client.draw.Sprite;
 import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
-import com.nttdata.ext4j.client.laf.Color;
 import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.ToolTip;
+import com.nttdata.ext4j.client.ui.Viewport;
 import com.nttdata.ext4j.client.util.Format;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
-import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
-public class CustomBarChartDemo extends DemoBase {
+public class Demo extends ExtEntryPoint {
 
-    public static final String TITLE = "Custom Bar Charts";
     private JsonStore store;
 
-    public CustomBarChartDemo() {
+    @Override
+    public void onLoad() {
+
         store = ChartDataUtil.getStore(12, 20);
         Chart chart = createChart();
 
-        Panel panel = new Panel("Custom Bar Chart");
+        Panel panel = new Panel("Bar Chart");
         panel.setLayout(Layout.FIT);
         panel.setFrame(true);
         panel.setCollapsible(true);
@@ -48,40 +50,27 @@ public class CustomBarChartDemo extends DemoBase {
             }
         }));
 
-        demoPanel.setLayout(Layout.FIT);
-        demoPanel.add(panel);
+        Viewport.get(Layout.FIT).add(panel);
 
-    }
-
-    @Override
-    public String getDemoTitle() {
-        return TITLE;
     }
 
     private Chart createChart() {
-
-        final List<String> colors = new ArrayList<String>();
-        colors.add("rgb(213, 70, 121)");
-        colors.add("rgb(44, 153, 201)");
-        colors.add("rgb(146, 6, 157)");
-        colors.add("rgb(49, 149, 0)");
-        colors.add("rgb(249, 153, 0)");
 
         final Chart chart = new Chart(store);
         chart.setShadow(true);
         chart.setAnimate(true);
 
-        NumericAxis nAxis = new NumericAxis();
-        nAxis.setPosition(Position.BOTTOM);
-        nAxis.setTitle("Number of Hits");
-        nAxis.setFields("data1");
-        nAxis.setMinimum(0);
+        NumericAxis numericAxis = new NumericAxis();
+        numericAxis.setPosition(Position.BOTTOM);
+        numericAxis.setTitle("Number of Hits");
+        numericAxis.setFields("data1");
+        numericAxis.setMinimum(0);
 
         Label l = new Label();
         l.setRenderer(Format.getNumberRender("0,0"));
-        nAxis.setLabel(l);
-        nAxis.setGrid(true);
-        chart.addAxis(nAxis);
+        numericAxis.setLabel(l);
+        numericAxis.setGrid(true);
+        chart.addAxis(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
         categoryAxis.setPosition(Position.LEFT);
@@ -95,17 +84,19 @@ public class CustomBarChartDemo extends DemoBase {
         serie.setAxis(Position.BOTTOM);
         serie.setXField("name");
         serie.setYField("data1");
-        serie.setRenderer(new SeriesRenderer() {
+
+        ChartTooltip tip = new ChartTooltip();
+        tip.setTrackMouse(true);
+        tip.setWidth(140);
+        tip.setHeight(28);
+        tip.setRenderer(new ChartTooltipRenderer() {
             @Override
-            public JavaScriptObject onRender(Sprite sprite, BaseModel record, BarAttribute attributes, int index,
-                            Store store) {
-                int value = record.getAsInteger("data1");
-                int i = (value >> 0) % 5;
-                String color = colors.get(i);
-                attributes.setFill(color);
-                return attributes;
+            public void onRender(ToolTip tip, BaseModel record, JavaScriptObject item) {
+                tip.setTitle(record.getAsString("name") + " : " + record.getAsInteger("data1") + " views");
             }
         });
+        serie.setTips(tip);
+        serie.setHighLight(true);
 
         l = new Label();
         l.setDisplay("insideEnd");
@@ -118,8 +109,9 @@ public class CustomBarChartDemo extends DemoBase {
 
         chart.addSeries(serie);
         chart.drawSeries();
-        chart.setBackGroundFill(Color.BISQUE);
 
         return chart;
     }
+
 }
+</textarea>

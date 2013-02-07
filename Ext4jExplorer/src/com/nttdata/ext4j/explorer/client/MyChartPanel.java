@@ -10,6 +10,7 @@ import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
 import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.ChartCreator;
 
 public class MyChartPanel implements IsWidget {
 

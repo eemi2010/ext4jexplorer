@@ -59,7 +59,7 @@ public class GoogleMapDemo extends DemoBase {
         Menu menu = new Menu();
         menu.addItem(new MenuItem("Terrain", itemClickHandler));
         menu.addItem(new MenuItem("Hybrid", itemClickHandler));
-        menu.addItem(new MenuItem("Sattellite", itemClickHandler));
+        menu.addItem(new MenuItem("Satellite", itemClickHandler));
         menu.addItem(new MenuItem("Roadmap", itemClickHandler));
 
         menuButton.setMenu(menu);

@@ -1,4 +1,4 @@
-package com.nttdata.ext4j.explorer.client;
+package com.nttdata.ext4j.explorer.client.ui.demos.charts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,6 @@ import com.nttdata.ext4j.client.data.handlers.EachCallBack;
 import com.nttdata.ext4j.client.draw.Sprite;
 import com.nttdata.ext4j.client.laf.Color;
 import com.nttdata.ext4j.client.ui.Chart;
-import com.nttdata.ext4j.client.ui.DatePicker;
 import com.nttdata.ext4j.client.ui.ToolTip;
 import com.nttdata.ext4j.client.util.Format;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
@@ -124,7 +123,6 @@ public class ChartCreator {
         final ChartTooltip chartTip = new ChartTooltip();
         chartTip.setTrackMouse(true);
         chartTip.setWidth(200);
-        chartTip.setHeight(200);
         chartTip.setRenderer(new ChartTooltipRenderer() {
             @Override
             public void onRender(ToolTip tip, BaseModel record, JavaScriptObject item) {
@@ -132,7 +130,6 @@ public class ChartCreator {
                 tip.setTitle(title);
             }
         });
-        chartTip.setItems(new DatePicker());
         serie.setTips(chartTip);
 
         l = new Label();

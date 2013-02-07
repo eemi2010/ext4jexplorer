@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import com.nttdata.ext4j.client.data.TableItem;
 import com.nttdata.ext4j.explorer.client.ui.demos.buttons.ButtonsDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.charts.AreaChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.BarChartDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.charts.CustomBarChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.LineChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.MixedSeriesChartDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.charts.PieChartDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.combination.GoogleMapDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.combination.PortalDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.components.MessageBoxDemo;
@@ -15,6 +19,9 @@ import com.nttdata.ext4j.explorer.client.ui.demos.layout.AnchorLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.BorderLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.CardLayoutDemo;
 import com.nttdata.ext4j.explorer.client.ui.demos.layout.ColumnLayoutDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.tabs.AdvancedTabsDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.tabs.BasicTabsDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.tabs.TabScrollerMenuDemo;
 
 public class ExamplesData {
 
@@ -29,6 +36,7 @@ public class ExamplesData {
         ArrayList<TableItem> items = new ArrayList<TableItem>();
         items.add(getChartsData());
         items.add(getComponentsData());
+        items.add(getTabsData());
         items.add(getLayoutsData());
         items.add(getCombinationExampleData());
         root.setChildren(items);
@@ -42,17 +50,17 @@ public class ExamplesData {
 
         ArrayList<TableItem> items = new ArrayList<TableItem>();
         items.add(new NavigationItem(AreaChartDemo.TITLE));
-        items.add(new NavigationItem("Bar Charts"));
+        items.add(new NavigationItem(BarChartDemo.TITLE));
         items.add(new NavigationItem(CustomBarChartDemo.TITLE));
-        items.add(new NavigationItem("Column Charts"));
-        items.add(new NavigationItem("Line Charts"));
+        // items.add(new NavigationItem("Column Charts"));
+        items.add(new NavigationItem(LineChartDemo.TITLE));
         items.add(new NavigationItem("Radar Charts"));
-        items.add(new NavigationItem("Column Custom Background"));
-        items.add(new NavigationItem("Mixed Series Chart"));
-        items.add(new NavigationItem("Pie Charts"));
+        // items.add(new NavigationItem("Column Custom Background"));
+        items.add(new NavigationItem(MixedSeriesChartDemo.TITLE));
+        items.add(new NavigationItem(PieChartDemo.TITLE));
         items.add(new NavigationItem("Gauge Charts"));
-        items.add(new NavigationItem("Live Animated Charts"));
-        items.add(new NavigationItem("Grouped Bar"));
+        // items.add(new NavigationItem("Live Animated Charts"));
+        // items.add(new NavigationItem("Grouped Bar"));
 
         root.setChildren(items);
 
@@ -68,6 +76,20 @@ public class ExamplesData {
         items.add(new NavigationItem(MessageBoxDemo.TITLE));
         items.add(new NavigationItem("DatePicker"));
         items.add(new NavigationItem("Slider"));
+
+        root.setChildren(items);
+
+        return root;
+    }
+
+    private static TableItem getTabsData() {
+        NavigationItem root = new NavigationItem("Tabs");
+        root.setIcon("imgs/bullet_shape.png");
+
+        ArrayList<TableItem> items = new ArrayList<TableItem>();
+        items.add(new NavigationItem(BasicTabsDemo.TITLE));
+        items.add(new NavigationItem(AdvancedTabsDemo.TITLE));
+        items.add(new NavigationItem(TabScrollerMenuDemo.TITLE));
 
         root.setChildren(items);
 

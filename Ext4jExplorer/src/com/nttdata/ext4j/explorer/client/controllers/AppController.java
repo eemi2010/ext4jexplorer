@@ -13,7 +13,11 @@ import com.nttdata.ext4j.client.ui.Viewport;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
 import com.nttdata.ext4j.explorer.client.controllers.demos.charts.AreaChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.BarChartDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.charts.CustomBarChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.LineChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.MixedSeriesChartDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.charts.PieChartDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.MapDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.PortalDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.component.ButtonsDemoController;
@@ -24,6 +28,9 @@ import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AnchorLayoutD
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.BorderLayoutDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.CardLayoutDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.ColumnLayoutDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.AdvancedTabsDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.BasicTabsDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.TabScrollerMenuDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.AboutDocController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.GettingStartedDocController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.RequirementsDocController;
@@ -80,6 +87,13 @@ public class AppController implements ValueChangeHandler<String> {
         PortalDemoController.get();
         MapDemoController.get();
         AreaChartDemoController.get();
+        BarChartDemoController.get();
+        LineChartDemoController.get();
+        PieChartDemoController.get();
+        MixedSeriesChartDemoController.get();
+        BasicTabsDemoController.get();
+        AdvancedTabsDemoController.get();
+        TabScrollerMenuDemoController.get();
 
     }
 

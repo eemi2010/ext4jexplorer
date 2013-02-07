@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='ext4jexplorer'>
+
+ <inherits name='com.emitrom.pilot.maps.Maps'/>
   <inherits name='com.nttdata.ext4j.Ext'/> 
   <inherits name='com.nttdata.ext4j.ux.portal.Portal'/> 
   <inherits name='com.nttdata.ext4j.ux.gmaps.GMaps'/> 
   <inherits name='com.nttdata.ext4j.ux.notification.Notification'/> 
-   <inherits name='com.emitrom.pilot.maps.Maps'/>
+   <inherits name="com.nttdata.ext4j.ux.tabclosemenu.TabCloseMenu"/>
+   <inherits name="com.nttdata.ext4j.ux.tabscrollermenu.TabScrollerMenu"/>
    
    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
   

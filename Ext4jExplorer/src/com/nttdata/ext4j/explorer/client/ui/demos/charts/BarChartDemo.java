@@ -1,34 +1,36 @@
 package com.nttdata.ext4j.explorer.client.ui.demos.charts;
 
-import com.nttdata.ext4j.client.chart.Legend;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.nttdata.ext4j.client.chart.ChartTooltipRenderer;
 import com.nttdata.ext4j.client.chart.axis.CategoryAxis;
 import com.nttdata.ext4j.client.chart.axis.NumericAxis;
-import com.nttdata.ext4j.client.chart.laf.GridConfig;
+import com.nttdata.ext4j.client.chart.laf.ChartTooltip;
 import com.nttdata.ext4j.client.chart.laf.Label;
-import com.nttdata.ext4j.client.chart.laf.Style;
-import com.nttdata.ext4j.client.chart.series.AreaSerie;
+import com.nttdata.ext4j.client.chart.series.BarSerie;
 import com.nttdata.ext4j.client.core.EventObject;
 import com.nttdata.ext4j.client.core.config.Position;
-import com.nttdata.ext4j.client.core.config.SpriteConfig;
+import com.nttdata.ext4j.client.data.BaseModel;
 import com.nttdata.ext4j.client.data.JsonStore;
 import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
 import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
+import com.nttdata.ext4j.client.ui.ToolTip;
+import com.nttdata.ext4j.client.util.Format;
 import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
-public class AreaChartDemo extends DemoBase {
+public class BarChartDemo extends DemoBase {
 
-    public static final String TITLE = "Area Chart";
+    public static final String TITLE = "Bar Chart";
     private JsonStore store;
 
-    public AreaChartDemo() {
+    public BarChartDemo() {
         store = ChartDataUtil.getStore(12, 20);
         Chart chart = createChart();
 
-        Panel panel = new Panel("Area Chart");
+        Panel panel = new Panel("Bar Chart");
         panel.setLayout(Layout.FIT);
         panel.setFrame(true);
         panel.setCollapsible(true);
@@ -57,46 +59,52 @@ public class AreaChartDemo extends DemoBase {
         chart.setShadow(true);
         chart.setAnimate(true);
 
-        Legend legend = new Legend(Position.BOTTOM);
-        chart.setLegend(legend);
-
         NumericAxis numericAxis = new NumericAxis();
-        numericAxis.setPosition(Position.LEFT);
+        numericAxis.setPosition(Position.BOTTOM);
         numericAxis.setTitle("Number of Hits");
-        numericAxis.setFields("data1", "data2", "data3", "data4", "data5", "data6", "data7");
-
-        SpriteConfig odd = new SpriteConfig();
-        odd.setOpacity(1);
-        odd.setFill("#ddd");
-        odd.setStroke("#bbb");
-        odd.setStrokeWidth(1);
-
-        numericAxis.setGrid(new GridConfig(odd));
+        numericAxis.setFields("data1");
         numericAxis.setMinimum(0);
-        numericAxis.setAdjustMaximumByMajorUnit(false);
+
+        Label l = new Label();
+        l.setRenderer(Format.getNumberRender("0,0"));
+        numericAxis.setLabel(l);
+        numericAxis.setGrid(true);
         chart.addAxis(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
-        categoryAxis.setPosition(Position.BOTTOM);
+        categoryAxis.setPosition(Position.LEFT);
         categoryAxis.setFields("name");
         categoryAxis.setTitle("Month of the year");
-        categoryAxis.setGrid(true);
-
-        Label label = new Label();
-        label.setRotate(315);
-        categoryAxis.setLabel(label);
         chart.addAxis(categoryAxis);
 
         chart.drawAxis();
 
-        AreaSerie serie = new AreaSerie();
-        serie.setHighLight(false);
+        BarSerie serie = new BarSerie();
+        serie.setAxis(Position.BOTTOM);
         serie.setXField("name");
-        serie.setYField("data1", "data2", "data3", "data4", "data5", "data6", "data7");
+        serie.setYField("data1");
 
-        Style style = new Style();
-        style.setOpacity(0.93);
-        serie.setStyle(style);
+        ChartTooltip tip = new ChartTooltip();
+        tip.setTrackMouse(true);
+        tip.setWidth(140);
+        tip.setHeight(28);
+        tip.setRenderer(new ChartTooltipRenderer() {
+            @Override
+            public void onRender(ToolTip tip, BaseModel record, JavaScriptObject item) {
+                tip.setTitle(record.getAsString("name") + " : " + record.getAsInteger("data1") + " views");
+            }
+        });
+        serie.setTips(tip);
+        serie.setHighLight(true);
+
+        l = new Label();
+        l.setDisplay("insideEnd");
+        l.setField("data1");
+        l.setOrientation("horizontal");
+        l.setColor("#333");
+        l.setTextAnchor("middle");
+        l.setRenderer(Format.getNumberRender("0"));
+        serie.setLabel(l);
 
         chart.addSeries(serie);
         chart.drawSeries();
