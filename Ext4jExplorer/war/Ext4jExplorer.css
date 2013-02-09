@@ -52,8 +52,8 @@ h2 {
 .docPanel .x-panel-body {
     background-color: #F4F4F4;
     font-size: 15px;
-    font: 16px / 1.4em "Metrophobic", "Helvetica Neue", Arial, "Lucida Grande", sans-serif !important;
-    font-family: Metrophobic, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
+    font: 16px / 1.4em "Times New Roman", "Helvetica Neue", Arial, "Lucida Grande", sans-serif !important;
+    font-family: Times New Roman, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
     font-size: 16px;
     font-style: normal;
     font-variant: normal;
@@ -70,7 +70,7 @@ h2 {
 	margin-bottom: 25px;
 	font-size: 1.2em;
 	/*color: #333333;*/
-    font-family: ‘Lucida Console’, Monaco, monospace;
+    font-family: ‘Times New Roman’, Monaco, monospace;
 }
 div.doc_content{
 	padding-left: 25px;
@@ -110,11 +110,19 @@ body .ux-notification-light {
 }
 
 
-
 .ux-notification-icon-information {
 	background-image: url('ext4jexplorer/icon16_info.png');
 }
 
 .ux-notification-icon-error {
 	background-image: url('ext4jexplorer/icon16_error.png');
+}
+
+
+.new-tab {
+    background-image:url(imgs/panel.png ) !important;
+}
+
+.tabs {
+    background-image:url(imgs/panel.png ) !important;
 }

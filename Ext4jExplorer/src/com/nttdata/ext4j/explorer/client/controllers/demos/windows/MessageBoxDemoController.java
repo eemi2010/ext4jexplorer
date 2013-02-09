@@ -1,8 +1,8 @@
-package com.nttdata.ext4j.explorer.client.controllers.demos.component;
+package com.nttdata.ext4j.explorer.client.controllers.demos.windows;
 
 import com.nttdata.ext4j.explorer.client.controllers.AbstractDemoController;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
-import com.nttdata.ext4j.explorer.client.ui.demos.components.MessageBoxDemo;
+import com.nttdata.ext4j.explorer.client.ui.demos.windows.MessageBoxDemo;
 
 public class MessageBoxDemoController extends AbstractDemoController {
 

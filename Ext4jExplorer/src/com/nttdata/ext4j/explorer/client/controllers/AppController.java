@@ -21,7 +21,7 @@ import com.nttdata.ext4j.explorer.client.controllers.demos.charts.PieChartDemoCo
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.MapDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.PortalDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.component.ButtonsDemoController;
-import com.nttdata.ext4j.explorer.client.controllers.demos.component.MessageBoxDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.SimpleGridDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AbsoluteLayoutDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AccordionLayoutDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AnchorLayoutDemoController;
@@ -31,6 +31,9 @@ import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.ColumnLayoutD
 import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.AdvancedTabsDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.BasicTabsDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.tabs.TabScrollerMenuDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.windows.MessageBoxDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.windows.WindowLayoutDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.windows.WindowsVariationDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.AboutDocController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.GettingStartedDocController;
 import com.nttdata.ext4j.explorer.client.controllers.docentries.RequirementsDocController;
@@ -94,6 +97,9 @@ public class AppController implements ValueChangeHandler<String> {
         BasicTabsDemoController.get();
         AdvancedTabsDemoController.get();
         TabScrollerMenuDemoController.get();
+        WindowsVariationDemoController.get();
+        WindowLayoutDemoController.get();
+        SimpleGridDemoController.get();
 
     }
 

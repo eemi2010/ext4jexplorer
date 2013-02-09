@@ -19,7 +19,7 @@ public class WelcomePanel extends Panel {
     }
 
     private WelcomePanel() {
-        this.setTitle("Welcome");
+        this.setTitle(" Ext4j ");
         this.setCls("docPanel");
         Ext4jPanel.get().add(this);
         RequestUtil.loadContent("index.html", this);

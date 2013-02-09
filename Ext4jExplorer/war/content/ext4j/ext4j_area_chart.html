@@ -5,8 +5,6 @@
  */
 package com.nttdata.ext4j.explorer.client;
 
-package com.nttdata.ext4j.explorer.client;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,19 +57,10 @@ public class Demo extends ExtEntryPoint {
 
     private Chart createChart() {
 
-        final List<String> colors = new ArrayList<String>();
-        colors.add("rgb(213, 70, 121)");
-        colors.add("rgb(44, 153, 201)");
-        colors.add("rgb(146, 6, 157)");
-        colors.add("rgb(49, 149, 0)");
-        colors.add("rgb(249, 153, 0)");
-
         final Chart chart = new Chart(store);
         chart.setShadow(true);
         chart.setAnimate(true);
-
-        Legend legend = new Legend(Position.BOTTOM);
-        chart.setLegend(legend);
+        chart.setLegend(new Legend(Position.BOTTOM));
 
         NumericAxis numericAxis = new NumericAxis();
         numericAxis.setPosition(Position.LEFT);

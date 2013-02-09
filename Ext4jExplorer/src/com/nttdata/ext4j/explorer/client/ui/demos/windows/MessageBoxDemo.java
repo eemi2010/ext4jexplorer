@@ -1,4 +1,4 @@
-package com.nttdata.ext4j.explorer.client.ui.demos.components;
+package com.nttdata.ext4j.explorer.client.ui.demos.windows;
 
 import com.google.gwt.user.client.Timer;
 import com.nttdata.ext4j.client.core.EventObject;
