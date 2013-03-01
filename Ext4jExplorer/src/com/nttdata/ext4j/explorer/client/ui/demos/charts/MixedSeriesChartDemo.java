@@ -15,7 +15,7 @@ import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
-import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
+import com.nttdata.ext4j.explorer.client.data.DataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
 public class MixedSeriesChartDemo extends DemoBase {
@@ -24,7 +24,7 @@ public class MixedSeriesChartDemo extends DemoBase {
     private JsonStore store;
 
     public MixedSeriesChartDemo() {
-        store = ChartDataUtil.getStore(8, 20);
+        store = DataUtil.getStore(8, 20);
         Chart chart = createChart();
 
         Panel panel = new Panel(TITLE);
@@ -38,7 +38,7 @@ public class MixedSeriesChartDemo extends DemoBase {
         panel.addButtons(new Button("Reload Data", new InteractionHandler() {
             @Override
             public void onEvent(Button button, EventObject event) {
-                store.loadData(ChartDataUtil.generateData(8, 20));
+                store.loadData(DataUtil.generateData(8, 20));
             }
         }));
 

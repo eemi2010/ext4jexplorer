@@ -3,9 +3,9 @@ package com.nttdata.ext4j.explorer.client.ui.app;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Frame;
 import com.nttdata.ext4j.client.core.EventObject;
+import com.nttdata.ext4j.client.core.config.Dock;
 import com.nttdata.ext4j.client.data.BaseModel;
 import com.nttdata.ext4j.client.data.NodeInterface;
 import com.nttdata.ext4j.client.data.TableItem;
@@ -13,6 +13,7 @@ import com.nttdata.ext4j.client.data.TreeStore;
 import com.nttdata.ext4j.client.data.handlers.BubbleHandler;
 import com.nttdata.ext4j.client.events.handlers.button.InteractionHandler;
 import com.nttdata.ext4j.client.events.handlers.table.ItemEventHandler;
+import com.nttdata.ext4j.client.events.handlers.textfield.TextFieldKeyHandler;
 import com.nttdata.ext4j.client.layout.BorderRegion;
 import com.nttdata.ext4j.client.layout.FitLayout;
 import com.nttdata.ext4j.client.ui.Button;
@@ -22,6 +23,7 @@ import com.nttdata.ext4j.client.ui.ToolBar;
 import com.nttdata.ext4j.client.ui.ToolBarSpacer;
 import com.nttdata.ext4j.client.ui.TreePanel;
 import com.nttdata.ext4j.client.ui.Window;
+import com.nttdata.ext4j.client.ui.form.field.TextField;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEventHandler;
@@ -45,13 +47,15 @@ public abstract class NavigationBase extends TreePanel implements DocEntryLoadEv
             @Override
             public void onEvent(DataView view, TableItem record, JavaScriptObject item, int index, EventObject event) {
                 BaseModel model = record.getRaw();
-                String data = model.get("data");
+                String data = model.get(TableItem.CONTENT);
                 String text = model.get("text").replace(" ", "_");
                 if (data.equalsIgnoreCase(Constants.DOC_ENTRY)) {
                     text = "Doc_" + text;
                 }
                 String historyToken = getProductName() + "_" + text;
-                History.newItem(historyToken, true);
+                // History.newItem(historyToken, true);
+
+                EventBusUtil.get().fireEvent(new DocEntryLoadEvent(historyToken, ""));
             }
         });
 
@@ -65,6 +69,7 @@ public abstract class NavigationBase extends TreePanel implements DocEntryLoadEv
 
             }
         });
+        discussButton.setDisabled(true);
         t.add(discussButton);
         t.add(new ToolBarSpacer());
 
@@ -88,6 +93,7 @@ public abstract class NavigationBase extends TreePanel implements DocEntryLoadEv
                 downloadWindow.show();
             }
         });
+        downloadButton.setDisabled(true);
         t.add(downloadButton);
 
         Button b = new Button();
@@ -113,6 +119,28 @@ public abstract class NavigationBase extends TreePanel implements DocEntryLoadEv
         t.add(b);
 
         this.addDocked(t);
+
+        TextField filterField = new TextField();
+        filterField.setWidth("100%");
+        filterField.setEnableKeyEvents(true);
+        filterField.addKeyUpHandler(new TextFieldKeyHandler() {
+            @Override
+            public void onEvent(TextField textField, EventObject event) {
+                String value = textField.getValue();
+                if (value != null) {
+                    NavigationBase.this.filterBy(value);
+                } else {
+                    NavigationBase.this.clearFilter();
+                }
+
+            }
+        });
+        filterField.setEmptyText("Search ...");
+
+        ToolBar toolBar = new ToolBar(Dock.TOP);
+        toolBar.add(filterField);
+        this.addDocked(toolBar);
+
     }
 
     @Override

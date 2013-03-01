@@ -20,7 +20,7 @@ import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.ui.ToolTip;
-import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
+import com.nttdata.ext4j.explorer.client.data.DataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
 public class PieChartDemo extends DemoBase {
@@ -30,7 +30,7 @@ public class PieChartDemo extends DemoBase {
     private PieSerie serie;
 
     public PieChartDemo() {
-        store = ChartDataUtil.getStore(6, 20);
+        store = DataUtil.getStore(6, 20);
         final Chart chart = createChart();
 
         Panel panel = new Panel(TITLE);
@@ -56,7 +56,7 @@ public class PieChartDemo extends DemoBase {
         panel.addButtons(donutButton, new Button("Reload Data", new InteractionHandler() {
             @Override
             public void onEvent(Button button, EventObject event) {
-                store.loadData(ChartDataUtil.generateData(6, 20));
+                store.loadData(DataUtil.generateData(6, 20));
             }
         }));
 

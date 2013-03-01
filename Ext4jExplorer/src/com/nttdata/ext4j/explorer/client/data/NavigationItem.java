@@ -8,13 +8,13 @@ public class NavigationItem extends TableItem {
 
     public NavigationItem() {
         setText("");
-        setData("data");
+        setContent("data");
         setLeaf(true);
     }
 
     public NavigationItem(String text) {
         setText(text);
-        setData("data");
+        setContent("data");
         setSourcePath(text + ".html");
         setIcon("imgs/next.png");
         setLeaf(true);
@@ -22,7 +22,7 @@ public class NavigationItem extends TableItem {
 
     public NavigationItem(String text, String data) {
         this(text);
-        setData(data);
+        setContent(data);
     }
 
     public void setSourcePath(String path) {

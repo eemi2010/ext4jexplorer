@@ -8,7 +8,7 @@ public class DocNavigationItem extends NavigationItem {
 
     public DocNavigationItem(String text) {
         setText(text);
-        setData(Constants.DOC_ENTRY);
+        setContent(Constants.DOC_ENTRY);
         setSourcePath(text + ".html");
         setIcon("imgs/next.png");
         setLeaf(true);

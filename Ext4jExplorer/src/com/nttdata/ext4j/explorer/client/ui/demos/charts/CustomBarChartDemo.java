@@ -23,7 +23,7 @@ import com.nttdata.ext4j.client.ui.Button;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.util.Format;
-import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
+import com.nttdata.ext4j.explorer.client.data.DataUtil;
 import com.nttdata.ext4j.explorer.client.ui.demos.DemoBase;
 
 public class CustomBarChartDemo extends DemoBase {
@@ -32,7 +32,7 @@ public class CustomBarChartDemo extends DemoBase {
     private JsonStore store;
 
     public CustomBarChartDemo() {
-        store = ChartDataUtil.getStore(12, 20);
+        store = DataUtil.getStore(12, 20);
         Chart chart = createChart();
 
         Panel panel = new Panel("Custom Bar Chart");
@@ -44,7 +44,7 @@ public class CustomBarChartDemo extends DemoBase {
         panel.addButtons(new Button("Reload Data", new InteractionHandler() {
             @Override
             public void onEvent(Button button, EventObject event) {
-                store.loadData(ChartDataUtil.generateData(12, 20));
+                store.loadData(DataUtil.generateData(12, 20));
             }
         }));
 

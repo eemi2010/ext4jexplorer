@@ -8,7 +8,6 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.nttdata.ext4j.client.layout.Layout;
 import com.nttdata.ext4j.client.tip.QuickTips;
-import com.nttdata.ext4j.client.ui.Panel;
 import com.nttdata.ext4j.client.ui.Viewport;
 import com.nttdata.ext4j.explorer.client.bindery.EventBusUtil;
 import com.nttdata.ext4j.explorer.client.bindery.events.DocEntryLoadEvent;
@@ -21,6 +20,13 @@ import com.nttdata.ext4j.explorer.client.controllers.demos.charts.PieChartDemoCo
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.MapDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.combinationexamples.PortalDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.component.ButtonsDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.GridCellEditingDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.GridDataBindingDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.GridFilteringDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.GridRowEditingDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.GroupingGridDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.LockedGridDemoController;
+import com.nttdata.ext4j.explorer.client.controllers.demos.grid.PagingGridDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.grid.SimpleGridDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AbsoluteLayoutDemoController;
 import com.nttdata.ext4j.explorer.client.controllers.demos.layouts.AccordionLayoutDemoController;
@@ -46,16 +52,13 @@ public class AppController implements ValueChangeHandler<String> {
     private static final AppController INSTANCE = new AppController();
     private static String currentData = "";
     private static List<String> demoTitles = new ArrayList<String>();
-    private static Panel notImplementedPanel;
-    private static boolean panelAdded = false;
-    private static int added = 0;
 
     public static AppController get() {
         return INSTANCE;
     }
 
     private AppController() {
-        History.addValueChangeHandler(this);
+        // History.addValueChangeHandler(this);
     }
 
     public void launchApp() {
@@ -65,7 +68,7 @@ public class AppController implements ValueChangeHandler<String> {
         History.fireCurrentHistoryState();
     }
 
-    private static void loadContent() {
+    public static void loadContent() {
         NotImplementedController.get();
         WelcomePanel.get();
 
@@ -100,6 +103,13 @@ public class AppController implements ValueChangeHandler<String> {
         WindowsVariationDemoController.get();
         WindowLayoutDemoController.get();
         SimpleGridDemoController.get();
+        PagingGridDemoController.get();
+        GroupingGridDemoController.get();
+        GridFilteringDemoController.get();
+        GridCellEditingDemoController.get();
+        GridDataBindingDemoController.get();
+        LockedGridDemoController.get();
+        GridRowEditingDemoController.get();
 
     }
 

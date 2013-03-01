@@ -32,12 +32,12 @@ import com.nttdata.ext4j.client.laf.Color;
 import com.nttdata.ext4j.client.ui.Chart;
 import com.nttdata.ext4j.client.ui.ToolTip;
 import com.nttdata.ext4j.client.util.Format;
-import com.nttdata.ext4j.explorer.client.data.ChartDataUtil;
+import com.nttdata.ext4j.explorer.client.data.DataUtil;
 
 public class ChartCreator {
 
-    private static final Store store = ChartDataUtil.getStore(12, 20);
-    private static final Store barStore = ChartDataUtil.getStore(6, 20);
+    private static final Store store = DataUtil.getStore(12, 20);
+    private static final Store barStore = DataUtil.getStore(6, 20);
 
     public static Chart createAreaChart() {
         final Chart chart = new Chart(store);
