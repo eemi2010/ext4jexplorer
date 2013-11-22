@@ -7,5 +7,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gwt4ext"/>
 	<classpathentry kind="lib" path="libs/pilot_1.0.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/flash4j"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/webdesktop"/>
+	<classpathentry kind="lib" path="libs/gwt-tour-0.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/anim4j"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
