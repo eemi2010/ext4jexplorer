@@ -1,10 +1,11 @@
 package com.eemi.ext4j.explorer.client.modules.base;
 
-import com.eemi.ext4j.client.core.Component;
 import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
 import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.component.EventHandler;
-import com.eemi.ext4j.client.events.handlers.panel.CloseHandler;
+import com.eemi.ext4j.client.eventhandling.component.ActivateEvent;
+import com.eemi.ext4j.client.eventhandling.component.ActivateHandler;
+import com.eemi.ext4j.client.eventhandling.panel.CloseEvent;
+import com.eemi.ext4j.client.eventhandling.panel.CloseHandler;
 import com.eemi.ext4j.client.events.handlers.window.WindowEventHandler;
 import com.eemi.ext4j.client.laf.ButtonScale;
 import com.eemi.ext4j.client.layout.Layout;
@@ -39,17 +40,16 @@ public abstract class BaseDemoModule extends DesktopModule {
     public DesktopModuleWindow createModuleWindow() {
         DesktopModuleWindow win = super.createModuleWindow();
         win.setSize(1000, 600);
-        win.addCloseHandler(new CloseHandler() {
+        win.addCloseHandler(new com.eemi.ext4j.client.eventhandling.panel.CloseHandler() {
             @Override
-            public void onEvent(Panel panel) {
+            public void onClose(CloseEvent event) {
                 if (sourceWindow != null) {
                     sourceWindow.close();
                     sourceWindow = null;
                 }
+
             }
-
         });
-
         win.addMinimizeHandler(new WindowEventHandler() {
             @Override
             public void onEvent(Window window) {
@@ -59,9 +59,9 @@ public abstract class BaseDemoModule extends DesktopModule {
             }
         });
 
-        win.addActivateHandler(new EventHandler() {
+        win.addActivateHandler(new ActivateHandler() {
             @Override
-            public void onEvent(Component component) {
+            public void onActivate(ActivateEvent event) {
                 if (sourceWindow != null && !sourceWindow.isVisible()) {
                     sourceWindow.show();
                 }
@@ -94,10 +94,11 @@ public abstract class BaseDemoModule extends DesktopModule {
             sourceWindow.add(contentPanel);
             sourceWindow.addCloseHandler(new CloseHandler() {
                 @Override
-                public void onEvent(Panel panel) {
+                public void onClose(CloseEvent event) {
                     sourceWindow = null;
                 }
             });
+
             sourceWindow.show();
             new Timer() {
                 @Override

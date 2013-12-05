@@ -30,7 +30,7 @@
    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
   
   <!-- Specify the app entry point class.                         -->
-  <entry-point class='com.nttdata.ext4j.explorer.client.Ext4jExplorer'/>
+  <entry-point class='com.eemi.ext4j.explorer.client.Ext4jExplorer'/>
   
   <!--  extend-property name="locale" values="de"/-->
 

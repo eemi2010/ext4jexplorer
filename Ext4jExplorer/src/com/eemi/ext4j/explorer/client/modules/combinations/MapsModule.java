@@ -2,7 +2,8 @@ package com.eemi.ext4j.explorer.client.modules.combinations;
 
 import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.config.Position;
-import com.eemi.ext4j.client.events.handlers.button.InteractionHandler;
+import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
+import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
 import com.eemi.ext4j.client.events.handlers.menu.item.ItemClickHandler;
 import com.eemi.ext4j.client.fx.easing.Easing;
 import com.eemi.ext4j.client.laf.Alignment;
@@ -67,15 +68,17 @@ public class MapsModule extends BaseDemoModule {
         panel.setTitleAlign(Position.CENTER);
 
         ToolBar toolBar = new ToolBar();
-        Button currentLocation = new Button("Get current location", new InteractionHandler() {
+        Button currentLocation = new Button("Donut", new ClickHandler() {
             @Override
-            public void onEvent(Button button, EventObject event) {
+            public void onClick(ClickEvent event) {
                 new Notification().setAutoCloseDelay(3000).setSlideInAnimation(Easing.ELASTIC_IN).setPosition("t")
                                 .setTitle("Current Location").setClosable(false)
                                 .setIconCls("ux-notification-icon-information").setCls("ux-notification-light")
                                 .setMessage("Not yet implemented").show();
+
             }
         });
+
         currentLocation.setCls("x-btn-default-small");
         toolBar.add(currentLocation);
 

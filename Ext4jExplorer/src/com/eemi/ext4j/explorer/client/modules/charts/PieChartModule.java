@@ -8,7 +8,6 @@ import com.eemi.ext4j.client.chart.laf.ChartTooltip;
 import com.eemi.ext4j.client.chart.laf.Label;
 import com.eemi.ext4j.client.chart.series.PieSerie;
 import com.eemi.ext4j.client.chart.theme.Theme;
-import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.data.BaseModel;
@@ -16,7 +15,6 @@ import com.eemi.ext4j.client.data.JsonStore;
 import com.eemi.ext4j.client.data.handlers.EachCallBack;
 import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
 import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.button.InteractionHandler;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Chart;
@@ -74,15 +72,17 @@ public class PieChartModule extends BaseDemoModule {
         });
         tb.add(reloadButton);
 
-        Button donutButton = new Button("Donut", new InteractionHandler() {
+        Button donutButton = new Button("Donut", new ClickHandler() {
             @Override
-            public void onEvent(Button button, EventObject event) {
+            public void onClick(ClickEvent event) {
+                Button button = event.getSource();
                 if (button.isPressed()) {
                     chart.getSeries().get(0).setDonut(35);
                 } else {
                     chart.getSeries().get(0).setDonut(false);
                 }
                 chart.refresh();
+
             }
         });
         donutButton.setEnableToggle(true);

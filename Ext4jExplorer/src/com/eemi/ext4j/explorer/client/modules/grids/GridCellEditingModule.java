@@ -1,9 +1,9 @@
 package com.eemi.ext4j.explorer.client.modules.grids;
 
-import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.data.Store;
-import com.eemi.ext4j.client.events.handlers.button.InteractionHandler;
+import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
+import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
 import com.eemi.ext4j.client.grid.column.GridColumn;
 import com.eemi.ext4j.client.grid.column.GridColumnEditor;
 import com.eemi.ext4j.client.grid.plugin.CellEditing;
@@ -103,15 +103,17 @@ public class GridCellEditingModule extends BaseDemoModule {
         grid.renderColumns();
 
         ToolBar tb = new ToolBar(Dock.TOP);
-        tb.add(new Button("Add Company", new InteractionHandler() {
+        tb.add(new Button("Add Company", new ClickHandler() {
             @Override
-            public void onEvent(Button button, EventObject event) {
+            public void onClick(ClickEvent event) {
                 Company c = new Company("New company", 83.81, 0.28, 0.34, "9/1/2013");
                 store.insert(0, c);
                 cellEditing.startEditByPosition(0, 0);
-                button.setDisabled(true);
+                event.getSource().setDisabled(true);
+
             }
         }));
+
         grid.addDocked(tb);
 
         win.add(grid);

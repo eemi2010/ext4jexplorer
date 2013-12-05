@@ -3,13 +3,13 @@ package com.eemi.ext4j.explorer.client.modules.grids;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.Ext;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.data.BaseModel;
 import com.eemi.ext4j.client.data.Store;
 import com.eemi.ext4j.client.data.TableItem;
-import com.eemi.ext4j.client.events.handlers.button.InteractionHandler;
+import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
+import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
 import com.eemi.ext4j.client.events.handlers.table.SelectionChangeHandler;
 import com.eemi.ext4j.client.grid.column.DateGridColumn;
 import com.eemi.ext4j.client.grid.column.GridColumn;
@@ -121,9 +121,10 @@ public class GridRowEditingModule extends BaseDemoModule {
         grid.renderColumns();
 
         ToolBar tb = new ToolBar(Dock.TOP);
-        Button addButton = new Button("Add Employee", new InteractionHandler() {
+
+        Button addButton = new Button("Add Employee", new ClickHandler() {
             @Override
-            public void onEvent(Button button, EventObject event) {
+            public void onClick(ClickEvent event) {
                 BaseModel employee = new BaseModel();
                 employee.set("name", "New Guy");
                 employee.set("email", "new@test.com");
@@ -135,19 +136,19 @@ public class GridRowEditingModule extends BaseDemoModule {
 
             }
         });
+
         addButton.setIcon("imgs/add-user.png");
         tb.add(addButton);
 
-        final Button delButton = new Button("Delete Employee", new InteractionHandler() {
+        final Button delButton = new Button("Delete Employee", new ClickHandler() {
             @Override
-            public void onEvent(Button button, EventObject event) {
+            public void onClick(ClickEvent event) {
                 rowEditing.cancelEdit();
                 SelectionModel sm = grid.getSelectionModel();
                 store.remove(sm.getSelection());
                 if (store.getCount() > 0) {
                     sm.select(0);
                 }
-
             }
         });
         delButton.setIcon("imgs/del-user.png");

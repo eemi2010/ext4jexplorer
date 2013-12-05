@@ -1,7 +1,7 @@
 package com.eemi.ext4j.explorer.client.rpc;
 
-import com.eemi.ext4j.client.core.Component;
-import com.eemi.ext4j.client.events.handlers.component.EventHandler;
+import com.eemi.ext4j.client.eventhandling.component.AfterRenderEvent;
+import com.eemi.ext4j.client.eventhandling.component.AfterRenderHandler;
 import com.eemi.ext4j.client.ui.Panel;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Request;
@@ -25,14 +25,13 @@ public class RequestUtil {
     }
 
     public static void load(final String htmlFile, final Panel target) {
-        target.addAfterRenderHandler(new EventHandler() {
+        target.addAfterRenderHandler(new AfterRenderHandler() {
             @Override
-            public void onEvent(Component component) {
+            public void onAfterRender(AfterRenderEvent event) {
                 target.getEl().mask("Loading content ...");
                 loadContent(htmlFile, target);
             }
         });
-
     }
 
     public static void loadContent(String htmlFile, final Panel target) {

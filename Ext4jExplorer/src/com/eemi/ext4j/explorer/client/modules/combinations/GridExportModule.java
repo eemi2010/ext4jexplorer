@@ -20,13 +20,24 @@ import com.eemi.ext4j.explorer.client.modules.base.BaseDemoModule;
 import com.eemi.ext4j.explorer.client.modules.combinations.resources.CombinationModulesResources;
 import com.eemi.ext4j.webdesktop.client.core.DesktopModuleConfig;
 import com.eemi.ext4j.webdesktop.client.ui.modules.DesktopModuleWindow;
-import com.google.gwt.user.client.Window;
+import com.emitrom.flash4j.alivepdf.client.colors.RGBColor;
+import com.emitrom.flash4j.alivepdf.client.data.DataCollection;
+import com.emitrom.flash4j.alivepdf.client.fonts.CoreFont;
+import com.emitrom.flash4j.alivepdf.client.grid.Grid;
+import com.emitrom.flash4j.alivepdf.client.layout.Align;
+import com.emitrom.flash4j.alivepdf.client.pdf.PDF;
+import com.emitrom.flash4j.clientio.client.ClientIO;
+import com.emitrom.flash4j.excel.client.ExcelFile;
+import com.emitrom.flash4j.excel.client.Sheet;
 
 public class GridExportModule extends BaseDemoModule {
 
     private final String MODULE_TITLE = "Grid Export";
 
     public static final GridExportModule INSTANCE = new GridExportModule();
+    List<Company> companyList;
+
+    private GridPanel grid;
 
     private GridExportModule() {
 
@@ -100,7 +111,8 @@ public class GridExportModule extends BaseDemoModule {
     @Override
     public DesktopModuleWindow createModuleWindow() {
         DesktopModuleWindow win = super.createModuleWindow();
-        sourceButton.setDisabled(true);
+
+        companyList = Company.getList();
 
         win.setSize(1200, 600);
         win.setLayout(Layout.FIT);
@@ -113,8 +125,8 @@ public class GridExportModule extends BaseDemoModule {
         pdfButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                Window.alert("Coming soon.");
-
+                grid.getEl().mask("Generating file ...");
+                createPDF();
             }
         });
         tb.add(pdfButton);
@@ -124,17 +136,17 @@ public class GridExportModule extends BaseDemoModule {
         xlsButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                Window.alert("Coming soon.");
-
+                grid.getEl().mask("Generating file ...");
+                createXls();
             }
         });
 
         tb.add(xlsButton);
         win.addDocked(tb);
 
-        Store store = new Store(Company.getList());
+        Store store = new Store(companyList);
 
-        GridPanel grid = new GridPanel(store);
+        grid = new GridPanel(store);
         grid.setTitle("Companies");
         grid.setMultiSelect(true);
 
@@ -196,6 +208,72 @@ public class GridExportModule extends BaseDemoModule {
 
         win.add(grid);
         return win;
+    }
+
+    private void createPDF() {
+        DataCollection data = new DataCollection();
+        for (Company company : companyList) {
+            data.addItem(company.getJsObj());
+        }
+
+        com.emitrom.flash4j.alivepdf.client.grid.GridColumn company = new com.emitrom.flash4j.alivepdf.client.grid.GridColumn(
+                        "Company", "company", 50, Align.CENTER);
+        com.emitrom.flash4j.alivepdf.client.grid.GridColumn price = new com.emitrom.flash4j.alivepdf.client.grid.GridColumn(
+                        "Price", "price", 50, Align.CENTER);
+        com.emitrom.flash4j.alivepdf.client.grid.GridColumn change = new com.emitrom.flash4j.alivepdf.client.grid.GridColumn(
+                        "Change", "change", 50, Align.CENTER);
+
+        com.emitrom.flash4j.alivepdf.client.grid.GridColumn changeInPercent = new com.emitrom.flash4j.alivepdf.client.grid.GridColumn(
+                        "Change in %", "pctChange", 50, Align.CENTER);
+
+        com.emitrom.flash4j.alivepdf.client.grid.GridColumn lastChange = new com.emitrom.flash4j.alivepdf.client.grid.GridColumn(
+                        "Last Change", "lastChange", 50, Align.CENTER);
+
+        Grid pdfGrid = new Grid(data, 250, 300, new RGBColor(0xE6E6FA), new RGBColor(0xF5FFFA), true, new RGBColor(
+                        0x00FA9A), new RGBColor(0x1E90FF), 1, 10);
+
+        pdfGrid.setColums(company, price, change, changeInPercent, lastChange);
+
+        PDF pdf = new PDF();
+        pdf.addPage();
+        pdf.setTextStyle(new RGBColor(0x000000));
+        pdf.setFont(new CoreFont(), 10);
+        pdf.addGrid(pdfGrid);
+
+        ClientIO.saveFile(pdf.save(), "Company.pdf");
+
+        grid.getEl().unmask();
+
+    }
+
+    private void createXls() {
+
+        Sheet excelSheet = new Sheet();
+        excelSheet.resize(10, 10);
+        excelSheet.setCell(0, 0, "Company");
+        excelSheet.setCell(0, 1, "Price");
+        excelSheet.setCell(0, 2, "Change");
+        excelSheet.setCell(0, 3, "Change in %");
+        excelSheet.setCell(0, 4, "Last Change");
+
+        for (int i = 0; i < companyList.size(); i++) {
+            writeContentToSheet(i, excelSheet, companyList.get(i));
+        }
+
+        ExcelFile excelFile = new ExcelFile();
+        excelFile.addSheet(excelSheet);
+
+        ClientIO.saveFile(excelFile.saveToByteArray(), "Company.xls");
+        grid.getEl().unmask();
+
+    }
+
+    private void writeContentToSheet(int row, Sheet sheet, Company company) {
+        sheet.setCell(row + 1, 0, company.get(Company.COMPANY_NAME));
+        sheet.setCell(row + 1, 1, company.getAsDouble(Company.PRICE) + "");
+        sheet.setCell(row + 1, 2, company.getAsDouble(Company.CHANGE) + "");
+        sheet.setCell(row + 1, 3, company.getAsDouble(Company.CHANGE_IN_PERCENT) + "");
+        sheet.setCell(row + 1, 4, company.get(Company.LAST_UPDATE));
     }
 
 }

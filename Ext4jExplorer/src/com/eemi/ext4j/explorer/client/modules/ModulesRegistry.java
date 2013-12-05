@@ -1,5 +1,6 @@
 package com.eemi.ext4j.explorer.client.modules;
 
+import com.eemi.ext4j.explorer.client.Ext4jExplorer;
 import com.eemi.ext4j.explorer.client.modules.about.AboutExt4jModule;
 import com.eemi.ext4j.explorer.client.modules.button.ButtonModule;
 import com.eemi.ext4j.explorer.client.modules.charts.AreaChartModule;
@@ -21,6 +22,7 @@ import com.eemi.ext4j.explorer.client.modules.grids.SimpleGridModule;
 import com.eemi.ext4j.explorer.client.modules.senchadocs.SenchaDocsModule;
 import com.eemi.ext4j.webdesktop.client.modules.settings.SettingsModule;
 import com.eemi.ext4j.webdesktop.client.ui.Desktop;
+import com.google.gwt.user.client.Timer;
 
 /**
  * Utility class to ass module on the Desktop
@@ -53,7 +55,24 @@ public class ModulesRegistry {
         Desktop.get().addModule(ClientIOModule.INSTANCE);
         Desktop.get().addModule(SettingsModule.get());
 
+        lauchStartModule();
+
         // startTour();
+    }
+
+    private static void lauchStartModule() {
+        new Timer() {
+            @Override
+            public void run() {
+                if (Ext4jExplorer.START_MODULE.equalsIgnoreCase("gridexport")) {
+                    GridExportModule.INSTANCE.launchModule();
+                } else if (Ext4jExplorer.START_MODULE.equalsIgnoreCase("chartexport")) {
+                    ChartExportModule.INSTANCE.launchModule();
+                } else if (Ext4jExplorer.START_MODULE.equalsIgnoreCase("gettingstarted")) {
+                    GettingStartedModule.INSTANCE.launchModule();
+                }
+            }
+        }.schedule(500);
     }
 
     /*
