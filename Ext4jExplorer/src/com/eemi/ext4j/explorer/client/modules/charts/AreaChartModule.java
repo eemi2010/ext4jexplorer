@@ -3,6 +3,7 @@ package com.eemi.ext4j.explorer.client.modules.charts;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eemi.ext4j.client.chart.Legend;
 import com.eemi.ext4j.client.chart.axis.AbstractAxis;
 import com.eemi.ext4j.client.chart.axis.CategoryAxis;
 import com.eemi.ext4j.client.chart.axis.NumericAxis;
@@ -120,15 +121,8 @@ public class AreaChartModule extends BaseDemoModule {
         categoryAxis.setLabel(label);
         axis.add(categoryAxis);
 
-        final Chart chart = new Chart() {
-            @Override
-            protected void onConfigCreated() {
-                this.setStore(store);
-                // this.setSeries(series);
-                this.setAxes(axis);
-                // this.setLegend(new Legend(Position.BOTTOM));
-            }
-        };
+        final Chart chart = Chart.newInstance(store, axis, series, new Legend(Position.BOTTOM));
+
         chart.setShadow(true);
         chart.setAnimate(true);
 

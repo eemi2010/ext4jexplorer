@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.eemi.ext4j.client.chart.ChartTooltipRenderer;
 import com.eemi.ext4j.client.chart.HighLighter;
-import com.eemi.ext4j.client.chart.Legend;
 import com.eemi.ext4j.client.chart.Segment;
 import com.eemi.ext4j.client.chart.laf.ChartTooltip;
 import com.eemi.ext4j.client.chart.laf.Label;
@@ -13,7 +12,6 @@ import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.PieSerie;
 import com.eemi.ext4j.client.chart.theme.Theme;
 import com.eemi.ext4j.client.core.config.Dock;
-import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.data.BaseModel;
 import com.eemi.ext4j.client.data.Store;
 import com.eemi.ext4j.client.data.handlers.EachCallBack;
@@ -144,7 +142,6 @@ public class PieChartModule extends BaseDemoModule {
 
         final Chart chart = Chart.create(store, series);
         chart.setStyle("background:#fff");
-        chart.setLegend(new Legend(Position.RIGHT));
         chart.setAnimate(true);
         chart.setShadow(true);
         chart.setInsetPadding(60);
