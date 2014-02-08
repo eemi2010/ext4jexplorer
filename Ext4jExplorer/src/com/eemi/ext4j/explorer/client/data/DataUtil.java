@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.eemi.ext4j.client.data.BaseModel;
-import com.eemi.ext4j.client.data.JsonStore;
+import com.eemi.ext4j.client.data.Store;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
 
@@ -109,16 +109,16 @@ public class DataUtil {
         return fields;
     }
 
-    public static JsonStore getStore() {
-        return new JsonStore(generateData(6, 20), getF());
+    public static Store getStore() {
+        return new Store(BaseModel.fromJsArray(generateData(6, 20)), getFields());
     }
 
-    public static JsonStore getStore(int n, int floor) {
-        return new JsonStore(generateData(n, floor), getF());
+    public static Store getStore(int n, int floor) {
+        return new Store(BaseModel.fromJsArray(generateData(n, floor)), getFields());
     }
 
-    public static JsonStore getSoreNegative() {
-        return new JsonStore(generateDataNegative(6, 20), getF());
+    public static Store getSoreNegative() {
+        return new Store(BaseModel.fromJsArray(generateDataNegative(6, 12)), getFields());
     }
 
     public static List<Company> getCompanyList() {

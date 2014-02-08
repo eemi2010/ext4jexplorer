@@ -1,23 +1,26 @@
 package com.eemi.ext4j.explorer.client.modules.charts;
 
-import com.eemi.ext4j.client.chart.Legend;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.eemi.ext4j.client.chart.axis.AbstractAxis;
 import com.eemi.ext4j.client.chart.axis.CategoryAxis;
 import com.eemi.ext4j.client.chart.axis.NumericAxis;
 import com.eemi.ext4j.client.chart.laf.GridConfig;
 import com.eemi.ext4j.client.chart.laf.Label;
 import com.eemi.ext4j.client.chart.laf.Style;
+import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.AreaSerie;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.core.config.SpriteConfig;
-import com.eemi.ext4j.client.data.JsonStore;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
+import com.eemi.ext4j.client.data.Store;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Chart;
 import com.eemi.ext4j.client.ui.ToolBar;
-import com.eemi.ext4j.explorer.client.data.DataUtil;
 import com.eemi.ext4j.explorer.client.modules.base.BaseDemoModule;
 import com.eemi.ext4j.explorer.client.modules.charts.resources.ChartsModuleResources;
 import com.eemi.ext4j.webdesktop.client.core.DesktopModuleConfig;
@@ -28,7 +31,7 @@ public class AreaChartModule extends BaseDemoModule {
     public static final AreaChartModule INSTANCE = new AreaChartModule();
 
     private static final String TITLE = "Area Chart";
-    private JsonStore store;
+    private Store store;
 
     private AreaChartModule() {
 
@@ -60,7 +63,7 @@ public class AreaChartModule extends BaseDemoModule {
         reloadButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                store.loadData(DataUtil.generateData(12, 20));
+                store.loadData(ChartData.generateData(12));
             }
         });
         tb.add(reloadButton);
@@ -74,14 +77,21 @@ public class AreaChartModule extends BaseDemoModule {
 
     private Chart createChart() {
 
-        store = DataUtil.getStore(12, 20);
+        store = new Store(ChartData.generateData(12));
 
-        final Chart chart = new Chart(store);
-        chart.setShadow(true);
-        chart.setAnimate(true);
+        final List<AbstractSerie> series = new ArrayList<AbstractSerie>();
 
-        Legend legend = new Legend(Position.BOTTOM);
-        chart.setLegend(legend);
+        AreaSerie serie = new AreaSerie();
+        serie.setHighLight(false);
+        serie.setXField("name");
+        serie.setYField("data1", "data2", "data3", "data4", "data5", "data6", "data7");
+
+        Style style = new Style();
+        style.setOpacity(0.93);
+        serie.setStyle(style);
+        series.add(serie);
+
+        final List<AbstractAxis> axis = new ArrayList<AbstractAxis>();
 
         NumericAxis numericAxis = new NumericAxis();
         numericAxis.setPosition(Position.LEFT);
@@ -97,7 +107,7 @@ public class AreaChartModule extends BaseDemoModule {
         numericAxis.setGrid(new GridConfig(odd));
         numericAxis.setMinimum(0);
         numericAxis.setAdjustMaximumByMajorUnit(false);
-        chart.addAxis(numericAxis);
+        axis.add(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
         categoryAxis.setPosition(Position.BOTTOM);
@@ -108,21 +118,19 @@ public class AreaChartModule extends BaseDemoModule {
         Label label = new Label();
         label.setRotate(315);
         categoryAxis.setLabel(label);
-        chart.addAxis(categoryAxis);
+        axis.add(categoryAxis);
 
-        chart.drawAxis();
-
-        AreaSerie serie = new AreaSerie();
-        serie.setHighLight(false);
-        serie.setXField("name");
-        serie.setYField("data1", "data2", "data3", "data4", "data5", "data6", "data7");
-
-        Style style = new Style();
-        style.setOpacity(0.93);
-        serie.setStyle(style);
-
-        chart.addSeries(serie);
-        chart.drawSeries();
+        final Chart chart = new Chart() {
+            @Override
+            protected void onConfigCreated() {
+                this.setStore(store);
+                // this.setSeries(series);
+                this.setAxes(axis);
+                // this.setLegend(new Legend(Position.BOTTOM));
+            }
+        };
+        chart.setShadow(true);
+        chart.setAnimate(true);
 
         return chart;
     }

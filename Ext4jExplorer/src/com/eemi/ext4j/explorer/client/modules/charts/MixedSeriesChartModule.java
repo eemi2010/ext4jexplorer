@@ -1,22 +1,26 @@
 package com.eemi.ext4j.explorer.client.modules.charts;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.eemi.ext4j.client.chart.axis.AbstractAxis;
 import com.eemi.ext4j.client.chart.axis.CategoryAxis;
 import com.eemi.ext4j.client.chart.axis.NumericAxis;
 import com.eemi.ext4j.client.chart.marker.Cross;
+import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.ColumnSerie;
 import com.eemi.ext4j.client.chart.series.LineSerie;
 import com.eemi.ext4j.client.chart.series.ScatterSerie;
 import com.eemi.ext4j.client.chart.theme.Theme;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
-import com.eemi.ext4j.client.data.JsonStore;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
+import com.eemi.ext4j.client.data.Store;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Chart;
 import com.eemi.ext4j.client.ui.ToolBar;
-import com.eemi.ext4j.explorer.client.data.DataUtil;
 import com.eemi.ext4j.explorer.client.modules.base.BaseDemoModule;
 import com.eemi.ext4j.explorer.client.modules.charts.resources.ChartsModuleResources;
 import com.eemi.ext4j.webdesktop.client.core.DesktopModuleConfig;
@@ -27,7 +31,7 @@ public class MixedSeriesChartModule extends BaseDemoModule {
     public static final MixedSeriesChartModule INSTANCE = new MixedSeriesChartModule();
 
     private static final String TITLE = "Mixed Charts";
-    private JsonStore store;
+    private Store store;
 
     private MixedSeriesChartModule() {
 
@@ -59,7 +63,7 @@ public class MixedSeriesChartModule extends BaseDemoModule {
         reloadButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                store.loadData(DataUtil.generateData(12, 20));
+                store.loadData(ChartData.generateData(12));
             }
         });
         tb.add(reloadButton);
@@ -73,41 +77,36 @@ public class MixedSeriesChartModule extends BaseDemoModule {
 
     private Chart createChart() {
 
-        store = DataUtil.getStore(12, 20);
-
-        final Chart chart = new Chart(store);
-        chart.setShadow(true);
-        chart.setAnimate(true);
-        chart.setTheme(Theme.CATEGORY1);
+        final List<AbstractAxis> axis = new ArrayList<AbstractAxis>();
 
         NumericAxis numericAxis = new NumericAxis();
         numericAxis.setPosition(Position.LEFT);
         numericAxis.setTitle("Number of Hits");
         numericAxis.setFields("data1", "data2", "data3");
         numericAxis.setGrid(true);
-        chart.addAxis(numericAxis);
+        axis.add(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
         categoryAxis.setFields("name");
         categoryAxis.setPosition(Position.BOTTOM);
         categoryAxis.setTitle("Month of the year");
-        chart.addAxis(categoryAxis);
+        axis.add(categoryAxis);
 
-        chart.drawAxis();
+        final List<AbstractSerie> series = new ArrayList<AbstractSerie>();
 
         ColumnSerie columnSerie = new ColumnSerie();
         columnSerie.setAxis(Position.LEFT);
         columnSerie.setXField("name");
         columnSerie.setYField("data1");
         columnSerie.setMarker(new Cross(5, 1));
-        chart.addSeries(columnSerie);
+        series.add(columnSerie);
 
         ScatterSerie scatterSerie = new ScatterSerie();
         scatterSerie.setAxis(Position.LEFT);
         scatterSerie.setXField("name");
         scatterSerie.setYField("data2");
         scatterSerie.setMarker(new Cross(5, 1));
-        chart.addSeries(scatterSerie);
+        series.add(scatterSerie);
 
         LineSerie lineSerie = new LineSerie();
         lineSerie.setAxis(Position.LEFT);
@@ -116,9 +115,14 @@ public class MixedSeriesChartModule extends BaseDemoModule {
         lineSerie.setFillOpacitiy(0.5);
         lineSerie.setXField("name");
         lineSerie.setYField("data3");
-        chart.addSeries(lineSerie);
+        series.add(lineSerie);
 
-        chart.drawSeries();
+        store = new Store(ChartData.generateData(12));
+
+        final Chart chart = Chart.newInstance(store, axis, series);
+        chart.setShadow(true);
+        chart.setAnimate(true);
+        chart.setTheme(Theme.CATEGORY1);
 
         return chart;
     }

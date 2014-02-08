@@ -1,20 +1,24 @@
 package com.eemi.ext4j.explorer.client.modules.combinations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.eemi.ext4j.client.chart.HighLighter;
 import com.eemi.ext4j.client.chart.Legend;
+import com.eemi.ext4j.client.chart.axis.AbstractAxis;
 import com.eemi.ext4j.client.chart.axis.CategoryAxis;
 import com.eemi.ext4j.client.chart.axis.NumericAxis;
 import com.eemi.ext4j.client.chart.laf.GridConfig;
 import com.eemi.ext4j.client.chart.marker.Circle;
 import com.eemi.ext4j.client.chart.marker.Cross;
+import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.LineSerie;
-import com.eemi.ext4j.client.chart.theme.Theme;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.core.config.SpriteConfig;
-import com.eemi.ext4j.client.data.JsonStore;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
+import com.eemi.ext4j.client.data.Store;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Chart;
@@ -37,7 +41,7 @@ import com.emitrom.flash4j.core.client.utils.Encoder;
 public class ChartExportModule extends BaseDemoModule {
 
     private final String MODULE_TITLE = "Chart Export";
-    private JsonStore store;
+    private Store store;
     private Chart chart;
 
     public static final ChartExportModule INSTANCE = new ChartExportModule();
@@ -140,13 +144,9 @@ public class ChartExportModule extends BaseDemoModule {
 
     private Chart createChart() {
 
-        chart = new Chart(store);
-        chart.setShadow(true);
-        chart.setAnimate(true);
-        chart.setTheme(Theme.CATEGORY1);
-
         Legend legend = new Legend(Position.RIGHT);
-        chart.setLegend(legend);
+
+        final List<AbstractAxis> axis = new ArrayList<AbstractAxis>();
 
         NumericAxis numericAxis = new NumericAxis();
         numericAxis.setPosition(Position.LEFT);
@@ -161,15 +161,14 @@ public class ChartExportModule extends BaseDemoModule {
         odd.setStroke("#bbb");
         odd.setStrokeWidth(0.5);
         numericAxis.setGrid(new GridConfig(odd));
-        chart.addAxis(numericAxis);
+        axis.add(numericAxis);
 
         CategoryAxis categoryAxis = new CategoryAxis();
         categoryAxis.setPosition(Position.BOTTOM);
         categoryAxis.setFields("name");
         categoryAxis.setTitle("Month of the year");
-        chart.addAxis(categoryAxis);
 
-        chart.drawAxis();
+        final List<AbstractSerie> series = new ArrayList<AbstractSerie>();
 
         LineSerie serie = new LineSerie();
         serie.setHighLighter(new HighLighter(7, 7));
@@ -177,7 +176,7 @@ public class ChartExportModule extends BaseDemoModule {
         serie.setXField("name");
         serie.setYField("data1");
         serie.setMarker(new Cross(4, 4, 0));
-        chart.addSeries(serie);
+        series.add(serie);
 
         serie = new LineSerie();
         serie.setHighLighter(new HighLighter(7, 7));
@@ -186,7 +185,7 @@ public class ChartExportModule extends BaseDemoModule {
         serie.setXField("name");
         serie.setYField("data2");
         serie.setMarker(new Circle(4, 4, 0));
-        chart.addSeries(serie);
+        series.add(serie);
 
         serie = new LineSerie();
         serie.setHighLighter(new HighLighter(7, 7));
@@ -196,9 +195,9 @@ public class ChartExportModule extends BaseDemoModule {
         serie.setFill(true);
         serie.setYField("data3");
         serie.setMarker(new Circle(4, 4, 0));
-        chart.addSeries(serie);
+        series.add(serie);
 
-        chart.drawSeries();
+        chart = Chart.newInstance(store, axis, series);
 
         return chart;
     }

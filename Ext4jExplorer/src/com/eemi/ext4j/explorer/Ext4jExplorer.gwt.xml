@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='ext4jexplorer'>
 
+ <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+  
  <inherits name='com.emitrom.pilot.maps.Maps'/>
  <inherits name='com.emitrom.flash4j.clientio.ClientIO'/> 
  <inherits name='com.emitrom.flash4j.clientio.canvg.CanVg'/> 
@@ -8,26 +10,39 @@
   <!--  inherits name='com.eemi.gwt.tour.GwtTour'/-->
 
   <inherits name="com.eemi.ext4j.webdesktop.WebDesktop" />
-     <inherits name='com.eemi.ext4j.webdesktop.ux.macos.MacOS'/> 
-     <inherits name='com.eemi.ext4j.webdesktop.ux.winadvanced.WinAdvanced'/> 
+     <inherits name='com.eemi.ext4j.webdesktop.rendering.macos.MacOS'/> 
+     <inherits name='com.eemi.ext4j.webdesktop.rendering.winadvanced.WinAdvanced'/> 
+      <inherits name='com.eemi.ext4j.webdesktop.rendering.touch.Touch'/> 
      
   <inherits name='com.eemi.ext4j.ux.portal.Portal'/> 
   <inherits name='com.eemi.ext4j.ux.gmaps.GMaps'/> 
   <inherits name='com.eemi.ext4j.ux.notification.Notification'/> 
-   <inherits name="com.eemi.ext4j.ux.tabclosemenu.TabCloseMenu"/>
-   <inherits name="com.eemi.ext4j.ux.tabscrollermenu.TabScrollerMenu"/>
+   <inherits name="com.eemi.ext4j.ux.tabs.closemenu.TabCloseMenu"/>
+   <inherits name="com.eemi.ext4j.ux.tabs.scrollermenu.TabScrollerMenu"/>
    <inherits name="com.eemi.ext4j.ux.data.pagingmemoryproxy.PagingMemoryProxy"/>
     <inherits name="com.eemi.ext4j.ux.grid.filterfeatures.GridFilterFeatures"/>
-     <inherits name="com.eemi.ext4j.ux.grid.columns.checkcolumn.CheckColumn"/>
+     <!--  inherits name="com.eemi.ext4j.ux.grid.columns.checkcolumn.CheckColumn"/-->
      
      
-     
-       <!-- Use DesktopBaseClientFactory by default -->
-	<replace-with class="com.eemi.ext4j.webdesktop.ux.winadvanced.client.WinAdvancedClientFactory">
-		<when-type-is class="com.eemi.ext4j.webdesktop.ux.common.client.ClientFactory" />
+	<replace-with class="com.eemi.ext4j.explorer.client.ExplorerDesktopClient">
+		<when-type-is class="com.eemi.ext4j.webdesktop.rendering.common.client.DesktopClientFactory" />
+		<when-property-is name="formfactor" value="desktop" />
 	</replace-with>
+	
+		
+	<replace-with class="com.eemi.ext4j.explorer.client.ExplorerPhoneClient">
+		<when-type-is class="com.eemi.ext4j.webdesktop.rendering.common.client.DesktopClientFactory" />
+		<when-property-is name="formfactor" value="phone" />
+	</replace-with>
+
+	<replace-with class="com.eemi.ext4j.explorer.client.ExplorerTabletClient">
+		<when-type-is class="com.eemi.ext4j.webdesktop.rendering.common.client.DesktopClientFactory" />
+		<when-property-is name="formfactor" value="tablet" />
+	</replace-with>
+	
+	<set-property name="user.agent" value="safari" />
    
-   <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+  
   
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.eemi.ext4j.explorer.client.Ext4jExplorer'/>

@@ -1,17 +1,17 @@
 package com.eemi.ext4j.explorer.client.modules.base;
 
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.eventhandling.component.ActivateEvent;
-import com.eemi.ext4j.client.eventhandling.component.ActivateHandler;
-import com.eemi.ext4j.client.eventhandling.panel.CloseEvent;
-import com.eemi.ext4j.client.eventhandling.panel.CloseHandler;
-import com.eemi.ext4j.client.events.handlers.window.WindowEventHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
+import com.eemi.ext4j.client.events.component.ActivateEvent;
+import com.eemi.ext4j.client.events.component.ActivateHandler;
+import com.eemi.ext4j.client.events.panel.CloseEvent;
+import com.eemi.ext4j.client.events.panel.CloseHandler;
+import com.eemi.ext4j.client.events.window.MinimizeEvent;
+import com.eemi.ext4j.client.events.window.MinimizeHandler;
 import com.eemi.ext4j.client.laf.ButtonScale;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Panel;
-import com.eemi.ext4j.client.ui.Window;
 import com.eemi.ext4j.explorer.client.modules.button.resources.ButtonModuleResources;
 import com.eemi.ext4j.explorer.client.rpc.RequestUtil;
 import com.eemi.ext4j.webdesktop.client.core.DesktopModuleConfig;
@@ -40,7 +40,7 @@ public abstract class BaseDemoModule extends DesktopModule {
     public DesktopModuleWindow createModuleWindow() {
         DesktopModuleWindow win = super.createModuleWindow();
         win.setSize(1000, 600);
-        win.addCloseHandler(new com.eemi.ext4j.client.eventhandling.panel.CloseHandler() {
+        win.addCloseHandler(new com.eemi.ext4j.client.events.panel.CloseHandler() {
             @Override
             public void onClose(CloseEvent event) {
                 if (sourceWindow != null) {
@@ -50,9 +50,9 @@ public abstract class BaseDemoModule extends DesktopModule {
 
             }
         });
-        win.addMinimizeHandler(new WindowEventHandler() {
+        win.addMinimizeHandler(new MinimizeHandler() {
             @Override
-            public void onEvent(Window window) {
+            public void onMinimize(MinimizeEvent event) {
                 if (sourceWindow != null) {
                     sourceWindow.hide();
                 }

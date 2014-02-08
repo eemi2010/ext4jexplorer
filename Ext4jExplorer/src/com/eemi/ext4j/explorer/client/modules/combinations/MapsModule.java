@@ -1,10 +1,10 @@
 package com.eemi.ext4j.explorer.client.modules.combinations;
 
-import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.config.Position;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.menu.item.ItemClickHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
+import com.eemi.ext4j.client.events.menu.ItemClickEvent;
+import com.eemi.ext4j.client.events.menu.ItemClickHandler;
 import com.eemi.ext4j.client.fx.easing.Easing;
 import com.eemi.ext4j.client.laf.Alignment;
 import com.eemi.ext4j.client.layout.Layout;
@@ -40,8 +40,8 @@ public class MapsModule extends BaseDemoModule {
 
         itemClickHandler = new ItemClickHandler() {
             @Override
-            public void onItemClick(MenuItem item, EventObject event) {
-                googleMap.setMapType(MapTypeId.fromValue(item.getText().toUpperCase()));
+            public void onItemClick(ItemClickEvent event) {
+                googleMap.setMapType(MapTypeId.fromValue(event.getSource().getText().toUpperCase()));
             }
         };
     }
@@ -113,5 +113,4 @@ public class MapsModule extends BaseDemoModule {
 
         return win;
     }
-
 }

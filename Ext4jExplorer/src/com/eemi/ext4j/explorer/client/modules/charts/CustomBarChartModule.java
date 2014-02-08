@@ -3,20 +3,21 @@ package com.eemi.ext4j.explorer.client.modules.charts;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.eemi.ext4j.client.chart.axis.AbstractAxis;
 import com.eemi.ext4j.client.chart.axis.CategoryAxis;
 import com.eemi.ext4j.client.chart.axis.NumericAxis;
 import com.eemi.ext4j.client.chart.laf.BarAttribute;
 import com.eemi.ext4j.client.chart.laf.Label;
+import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.BarSerie;
 import com.eemi.ext4j.client.chart.series.renderers.SeriesRenderer;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.data.BaseModel;
-import com.eemi.ext4j.client.data.JsonStore;
 import com.eemi.ext4j.client.data.Store;
 import com.eemi.ext4j.client.draw.Sprite;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
 import com.eemi.ext4j.client.laf.Color;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
@@ -35,7 +36,7 @@ public class CustomBarChartModule extends BaseDemoModule {
     public static final CustomBarChartModule INSTANCE = new CustomBarChartModule();
 
     private static final String TITLE = "Custom Bar Charts";
-    private JsonStore store;
+    private Store store;
 
     private CustomBarChartModule() {
 
@@ -88,31 +89,7 @@ public class CustomBarChartModule extends BaseDemoModule {
         colors.add("rgb(49, 149, 0)");
         colors.add("rgb(249, 153, 0)");
 
-        store = DataUtil.getStore(12, 20);
-
-        final Chart chart = new Chart(store);
-        chart.setShadow(true);
-        chart.setAnimate(true);
-
-        NumericAxis nAxis = new NumericAxis();
-        nAxis.setPosition(Position.BOTTOM);
-        nAxis.setTitle("Number of Hits");
-        nAxis.setFields("data1");
-        nAxis.setMinimum(0);
-
-        Label l = new Label();
-        l.setRenderer(Format.getNumberRender("0,0"));
-        nAxis.setLabel(l);
-        nAxis.setGrid(true);
-        chart.addAxis(nAxis);
-
-        CategoryAxis categoryAxis = new CategoryAxis();
-        categoryAxis.setPosition(Position.LEFT);
-        categoryAxis.setFields("name");
-        categoryAxis.setTitle("Month of the year");
-        chart.addAxis(categoryAxis);
-
-        chart.drawAxis();
+        final List<AbstractSerie> series = new ArrayList<AbstractSerie>();
 
         BarSerie serie = new BarSerie();
         serie.setAxis(Position.BOTTOM);
@@ -130,7 +107,7 @@ public class CustomBarChartModule extends BaseDemoModule {
             }
         });
 
-        l = new Label();
+        Label l = new Label();
         l.setDisplay("insideEnd");
         l.setField("data1");
         l.setOrientation("horizontal");
@@ -139,8 +116,33 @@ public class CustomBarChartModule extends BaseDemoModule {
         l.setRenderer(Format.getNumberRender("0"));
         serie.setLabel(l);
 
-        chart.addSeries(serie);
-        chart.drawSeries();
+        series.add(serie);
+
+        final List<AbstractAxis> axis = new ArrayList<AbstractAxis>();
+
+        NumericAxis nAxis = new NumericAxis();
+        nAxis.setPosition(Position.BOTTOM);
+        nAxis.setTitle("Number of Hits");
+        nAxis.setFields("data1");
+        nAxis.setMinimum(0);
+
+        l = new Label();
+        l.setRenderer(Format.getNumberRender("0,0"));
+        nAxis.setLabel(l);
+        nAxis.setGrid(true);
+        axis.add(nAxis);
+
+        CategoryAxis categoryAxis = new CategoryAxis();
+        categoryAxis.setPosition(Position.LEFT);
+        categoryAxis.setFields("name");
+        categoryAxis.setTitle("Month of the year");
+        axis.add(categoryAxis);
+
+        store = new Store(ChartData.generateData(12));
+
+        final Chart chart = Chart.newInstance(store, axis, series);
+        chart.setShadow(true);
+        chart.setAnimate(true);
         chart.setBackGroundFill(Color.BISQUE);
 
         return chart;

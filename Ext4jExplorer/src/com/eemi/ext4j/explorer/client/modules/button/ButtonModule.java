@@ -1,9 +1,8 @@
 package com.eemi.ext4j.explorer.client.modules.button;
 
-import com.eemi.ext4j.client.core.EventObject;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.menu.item.ItemClickHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
+import com.eemi.ext4j.client.events.menu.ItemClickEvent;
 import com.eemi.ext4j.client.laf.Alignment;
 import com.eemi.ext4j.client.laf.ButtonScale;
 import com.eemi.ext4j.client.layout.Layout;
@@ -83,12 +82,13 @@ public class ButtonModule extends BaseDemoModule {
 
         menu = new Menu();
         MenuItem item = new MenuItem("Item 1");
-        item.addClickHandler(new ItemClickHandler() {
+        item.addItemClickHandler(new com.eemi.ext4j.client.events.menu.ItemClickHandler() {
             @Override
-            public void onItemClick(MenuItem item, EventObject event) {
+            public void onItemClick(ItemClickEvent event) {
                 Window.alert("Item 1 waw clicked !!");
             }
         });
+
         menu.addItem(item);
         menu.addItem(new MenuItem("Item 2"));
         menu.addItem(new MenuItem("Item 3"));

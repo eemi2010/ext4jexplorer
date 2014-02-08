@@ -1,7 +1,7 @@
 package com.eemi.ext4j.explorer.client.rpc;
 
-import com.eemi.ext4j.client.eventhandling.component.AfterRenderEvent;
-import com.eemi.ext4j.client.eventhandling.component.AfterRenderHandler;
+import com.eemi.ext4j.client.events.component.AfterRenderEvent;
+import com.eemi.ext4j.client.events.component.AfterRenderHandler;
 import com.eemi.ext4j.client.ui.Panel;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Request;

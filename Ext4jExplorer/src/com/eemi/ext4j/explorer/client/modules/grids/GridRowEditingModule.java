@@ -7,10 +7,10 @@ import com.eemi.ext4j.client.core.Ext;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.data.BaseModel;
 import com.eemi.ext4j.client.data.Store;
-import com.eemi.ext4j.client.data.TableItem;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.table.SelectionChangeHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
+import com.eemi.ext4j.client.events.grid.SelectionChangeEvent;
+import com.eemi.ext4j.client.events.grid.SelectionChangeHandler;
 import com.eemi.ext4j.client.grid.column.DateGridColumn;
 import com.eemi.ext4j.client.grid.column.GridColumn;
 import com.eemi.ext4j.client.grid.column.GridColumnEditor;
@@ -19,11 +19,11 @@ import com.eemi.ext4j.client.grid.plugin.RowEditing;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.selection.SelectionModel;
 import com.eemi.ext4j.client.ui.Button;
+import com.eemi.ext4j.client.ui.DateField;
 import com.eemi.ext4j.client.ui.GridPanel;
+import com.eemi.ext4j.client.ui.NumberField;
 import com.eemi.ext4j.client.ui.ToolBar;
-import com.eemi.ext4j.client.ui.form.field.DateField;
-import com.eemi.ext4j.client.ui.form.field.NumberField;
-import com.eemi.ext4j.client.ui.form.field.VTypes;
+import com.eemi.ext4j.client.ui.VTypes;
 import com.eemi.ext4j.explorer.client.modules.base.BaseDemoModule;
 import com.eemi.ext4j.explorer.client.modules.grids.resources.GridsModuleResource;
 import com.eemi.ext4j.webdesktop.client.core.DesktopModuleConfig;
@@ -157,7 +157,7 @@ public class GridRowEditingModule extends BaseDemoModule {
         grid.addDocked(tb);
         grid.addSelectionChangeHandler(new SelectionChangeHandler() {
             @Override
-            public void onEvent(SelectionModel selectionModel, List<TableItem> records) {
+            public void onSelectionChange(SelectionChangeEvent event) {
                 if (store.getCount() > 0) {
                     delButton.setDisabled(false);
                 } else {

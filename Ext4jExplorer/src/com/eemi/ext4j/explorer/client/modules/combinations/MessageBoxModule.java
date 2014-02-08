@@ -1,13 +1,13 @@
 package com.eemi.ext4j.explorer.client.modules.combinations;
 
-import com.eemi.ext4j.client.core.EventObject;
 import com.eemi.ext4j.client.core.config.ButtonText;
 import com.eemi.ext4j.client.core.config.MessageBoxConfig;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
-import com.eemi.ext4j.client.events.handlers.menu.item.ItemClickHandler;
-import com.eemi.ext4j.client.events.handlers.messagebox.ConfirmCallback;
-import com.eemi.ext4j.client.events.handlers.messagebox.PromptCallback;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
+import com.eemi.ext4j.client.events.menu.ItemClickEvent;
+import com.eemi.ext4j.client.events.menu.ItemClickHandler;
+import com.eemi.ext4j.client.events.messagebox.ConfirmCallback;
+import com.eemi.ext4j.client.events.messagebox.PromptCallback;
 import com.eemi.ext4j.client.fx.easing.Easing;
 import com.eemi.ext4j.client.laf.Alignment;
 import com.eemi.ext4j.client.layout.Layout;
@@ -36,8 +36,8 @@ public class MessageBoxModule extends BaseDemoModule {
 
         itemClickHandler = new ItemClickHandler() {
             @Override
-            public void onItemClick(MenuItem item, EventObject event) {
-                processEvent(item.getText());
+            public void onItemClick(ItemClickEvent event) {
+                processEvent(event.getSource().getText());
             }
         };
         notification = new Notification().setAutoCloseDelay(3000).setSlideInAnimation(Easing.ELASTIC_IN)

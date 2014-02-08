@@ -1,20 +1,24 @@
 package com.eemi.ext4j.explorer.client.modules.charts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.eemi.ext4j.client.chart.ChartTooltipRenderer;
 import com.eemi.ext4j.client.chart.HighLighter;
 import com.eemi.ext4j.client.chart.Legend;
 import com.eemi.ext4j.client.chart.Segment;
 import com.eemi.ext4j.client.chart.laf.ChartTooltip;
 import com.eemi.ext4j.client.chart.laf.Label;
+import com.eemi.ext4j.client.chart.series.AbstractSerie;
 import com.eemi.ext4j.client.chart.series.PieSerie;
 import com.eemi.ext4j.client.chart.theme.Theme;
 import com.eemi.ext4j.client.core.config.Dock;
 import com.eemi.ext4j.client.core.config.Position;
 import com.eemi.ext4j.client.data.BaseModel;
-import com.eemi.ext4j.client.data.JsonStore;
+import com.eemi.ext4j.client.data.Store;
 import com.eemi.ext4j.client.data.handlers.EachCallBack;
-import com.eemi.ext4j.client.eventhandling.button.ClickEvent;
-import com.eemi.ext4j.client.eventhandling.button.ClickHandler;
+import com.eemi.ext4j.client.events.button.ClickEvent;
+import com.eemi.ext4j.client.events.button.ClickHandler;
 import com.eemi.ext4j.client.layout.Layout;
 import com.eemi.ext4j.client.ui.Button;
 import com.eemi.ext4j.client.ui.Chart;
@@ -32,7 +36,7 @@ public class PieChartModule extends BaseDemoModule {
     public static final PieChartModule INSTANCE = new PieChartModule();
 
     private static final String TITLE = "Pie Chart";
-    private JsonStore store;
+    private Store store;
 
     private PieChartModule() {
 
@@ -95,15 +99,8 @@ public class PieChartModule extends BaseDemoModule {
     }
 
     private Chart createChart() {
-        store = DataUtil.getStore(12, 20);
 
-        final Chart chart = new Chart(store);
-        chart.setStyle("background:#fff");
-        chart.setLegend(new Legend(Position.RIGHT));
-        chart.setAnimate(true);
-        chart.setShadow(true);
-        chart.setInsetPadding(60);
-        chart.setTheme(Theme.BASE_GRADIENTS);
+        final List<AbstractSerie> series = new ArrayList<AbstractSerie>();
 
         PieSerie serie = new PieSerie();
         serie.setField("data1");
@@ -141,9 +138,17 @@ public class PieChartModule extends BaseDemoModule {
         label.setContrast(true);
         label.setFont("18px Arial");
         serie.setLabel(label);
+        series.add(serie);
 
-        chart.addSeries(serie);
-        chart.drawSeries();
+        store = new Store(ChartData.generateData(12));
+
+        final Chart chart = Chart.create(store, series);
+        chart.setStyle("background:#fff");
+        chart.setLegend(new Legend(Position.RIGHT));
+        chart.setAnimate(true);
+        chart.setShadow(true);
+        chart.setInsetPadding(60);
+        chart.setTheme(Theme.BASE_GRADIENTS);
         return chart;
     }
 }
